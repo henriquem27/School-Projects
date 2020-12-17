@@ -1,0 +1,109 @@
+---
+title: 'Homework #7'
+author: "Henrique Magalhaes Rio"
+date: "10/18/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+```
+
+# Question 1 
+
+```{r}
+
+hou <-read.csv("housing_prices_CO.csv")
+
+```
+
+## Part 1 (a)
+
+```{r,include=FALSE}
+hlm <- lm(price_psf~pop_density, data=hou)
+tidy(hlm, conf.int = TRUE)
+
+```
+
+$\hat\beta_1$=15.836
+95% CI= (-3.63,35.3)
+
+
+## Part 2 (b)
+
+We fail to reject the null hyphoteses that the there isn't a linear relationship between median price per square foot of houses sold in a zipcode and population density of zipcode (95%CI= -3.63,35.3)
+
+
+## Part 3 (c)
+
+```{r, include=FALSE}
+hlm2 <- lm(price_psf~pop_density+med_hh_income, data=hou)
+```
+
+
+$\hat\beta_1$=18.3525
+$\hat\beta_2$=1.0103
+$\hat\beta_1$ 95% CI= (-1.07,37.8)
+
+## Part 4 (d)
+
+We fail to reject the null hyphoteses that the there isn't a linear relationship between median price per square foot of houses sold in a zipcode and population density of zipcode when adjusting for median household income in zipcode (95%CI= -1.07,37.8)
+
+## Part 5 (e)
+
+```{r, include=FALSE}
+hlm3 <- lm(price_psf~pop_density + med_hh_income+ I(metro=="Glenwood Springs"), data=hou)
+
+```
+
+$\hat\beta_1$=26.9296
+$\hat\beta_2$=1.1271
+$\hat\beta_2$=299.7804
+$\hat\beta_1$ 95% CI= (8.65,45.2)
+
+## Part 6 (f)
+
+We reject the null hyphoteses that the there isn't a linear relationship between median price per square foot of houses sold in a zipcode and population density of zipcode when adjusting for median household income in zipcode and wheter or not is located in the glenwood spring metropolitan area (95%CI= 8.65,45.2)
+
+## Part 7 (g)
+
+They are different because every time we add a new predictor to the linear model, the other predictor get adjusted for the new model which causes them to change everytime.
+
+# Question 2
+
+```{r}
+h2 <- read.csv("housingprices_textbook.csv")
+```
+
+# Part 1 (a)
+
+```{r,include= FALSE}
+
+h2lm <- lm(sale_price~ taxes+nbath+lot_size+living_space+ngarage+nroom+nbedroom+age+nfireplace, data = h2)
+
+```
+
+## Part 2 (b)
+
+We reject the null hyphoteses and conclude that there is a linear relationship between average house sale price, taxes,Lot size and living space, age of home, number of garages, number of rooms, number of bedrooms, age, and, number of fire places. (F-statistic: 9.037, P-value=0.000185)
+
+## Part 3 (c)
+
+```{r}
+summary(h2lm)
+```
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

@@ -1,0 +1,309 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={HW5},
+            pdfauthor={Henrique Magalhaes Rio},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{HW5}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Henrique Magalhaes Rio}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+    \date{}
+    \predate{}\postdate{}
+  
+\usepackage{xcolor}
+\usepackage{framed}
+
+\begin{document}
+\maketitle
+
+\colorlet{shadecolor}{gray!10}
+
+\newcommand{\answerstart}{ \colorlet{shadecolor}{orange!20}
+\begin{shaded} }
+\newcommand{\answerend}{  \end{shaded} \colorlet{shadecolor}{gray!10}}
+
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+\begin{verbatim}
+## 
+##  F test to compare two variances
+## 
+## data:  subper$conc by subper$wash_type
+## F = 0.47299, num df = 15, denom df = 15, p-value = 0.1585
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.1652614 1.3537510
+## sample estimates:
+## ratio of variances 
+##          0.4729934
+\end{verbatim}
+
+\hypertarget{question-3}{%
+\section{Question 3}\label{question-3}}
+
+No
+
+\hypertarget{question-4}{%
+\section{Question 4}\label{question-4}}
+
+Mean=2.775 SD= 13.74397
+
+\hypertarget{question-5}{%
+\section{Question 5}\label{question-5}}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  golf$distance[1:40] and golf$distance[41:80]
+## t = 1.277, df = 39, p-value = 0.1046
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -0.8864239        Inf
+## sample estimates:
+## mean of the differences 
+##                   2.775
+\end{verbatim}
+
+\hypertarget{question-6}{%
+\section{Question 6}\label{question-6}}
+
+We fail to reject the null hypotheses that coated balls do not decrease
+the average driving distance. (P-value=0.1046)
+
+\hypertarget{question-7}{%
+\section{Question 7}\label{question-7}}
+
+\hypertarget{part-1-a}{%
+\subsection{Part 1 (A)}\label{part-1-a}}
+
+Can be done with a smaller sample size.
+
+\hypertarget{part-2-b}{%
+\subsection{Part 2 (B)}\label{part-2-b}}
+
+If we have the same variability for a paired and independent design, we
+should not use the paired design as we degrees of freedom by doing so.
+
+\hypertarget{question-8}{%
+\section{Question 8}\label{question-8}}
+
+\hypertarget{part-1-a-1}{%
+\subsection{Part 1 (A)}\label{part-1-a-1}}
+
+\(Y_{ij}=\mu_i+\epsilon_{ij}\)
+
+\hypertarget{part-2-b-1}{%
+\subsection{Part 2 (B)}\label{part-2-b-1}}
+
+\(Y_{ij}\) is the observed values for the group j and factor level i.
+
+\(\mu_i\) is the theoretical mean for the level i.
+
+\(\epsilon_{ij}\) is the the independent normal error.
+
+\hypertarget{part-3-c}{%
+\subsection{Part 3 (C)}\label{part-3-c}}
+
+\(H_0=\mu_1=\mu_2=\mu_3=...=\mu_i\)
+
+\(H_a=\) at least one of the \(\mu_i\) differs.
+
+\hypertarget{question-9}{%
+\section{Question 9}\label{question-9}}
+
+\hypertarget{part-1-a-2}{%
+\subsection{Part 1 (A)}\label{part-1-a-2}}
+
+\(\bar{Y_1}=50.3\)
+
+\(\bar{Y_2}=61.1\)
+
+\(\bar{Y_3}=38.3\)
+
+\hypertarget{part-2-b-2}{%
+\subsection{Part 2 (B)}\label{part-2-b-2}}
+
+\(SS_{trt}=780.192\)
+
+\hypertarget{question-10}{%
+\section{Question 10}\label{question-10}}
+
+\small
+\begin{center}
+\begin{tabular}{l | c c c c c}
+\textbf{Source of Var} & \hspace{10pt} \textbf{df} \hspace{10pt}
+& \textbf{Sum of Squares} & \textbf{Mean Square} & \textbf{F} & \textbf{p-value} \\
+\hline
+\textbf{Trtment} & 4 & 987.71 & 246.93 & 246.9275 & 33.0949 \\
+\textbf{Error} & 25 & 186.53 & 7.4612 & --- & --- \\
+\hline
+\textbf{Total} & 29 & 1174.24 & --- & --- & --- \\
+\end{tabular}
+\end{center}
+
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(broom)}
+\KeywordTok{library}\NormalTok{(splines)}
+\KeywordTok{library}\NormalTok{(caret)}
+\KeywordTok{library}\NormalTok{(Matrix)}
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{library}\NormalTok{(formatR)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{echo =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{message =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{warning =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{fig.width =} \DecValTok{4}\NormalTok{, }
+    \DataTypeTok{fig.height =} \DecValTok{4}\NormalTok{, }\DataTypeTok{tidy =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# Q1}
+
+\NormalTok{perdata <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"PermethrinData.csv"}\NormalTok{)}
+\NormalTok{subper <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(perdata, spray_rate }\OperatorTok{==}\StringTok{ "1x"} \OperatorTok{&}\StringTok{ }\NormalTok{item_type }\OperatorTok{==}\StringTok{ "onesie"}\NormalTok{)}
+
+
+
+\CommentTok{# Q2}
+\KeywordTok{var.test}\NormalTok{(subper}\OperatorTok{$}\NormalTok{conc }\OperatorTok{~}\StringTok{ }\NormalTok{subper}\OperatorTok{$}\NormalTok{wash_type, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+
+\CommentTok{# Q4}
+\NormalTok{golf <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"GolfBallData.csv"}\NormalTok{)}
+
+
+\NormalTok{d <-}\StringTok{ }\NormalTok{golf}\OperatorTok{$}\NormalTok{distance[}\DecValTok{1}\OperatorTok{:}\DecValTok{40}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{golf}\OperatorTok{$}\NormalTok{distance[}\DecValTok{41}\OperatorTok{:}\DecValTok{80}\NormalTok{]}
+\NormalTok{mean =}\StringTok{ }\KeywordTok{mean}\NormalTok{(d)}
+\NormalTok{sd =}\StringTok{ }\KeywordTok{sd}\NormalTok{(d)}
+
+\NormalTok{mean}
+\NormalTok{sd}
+
+
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ golf}\OperatorTok{$}\NormalTok{distance[}\DecValTok{1}\OperatorTok{:}\DecValTok{40}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ golf}\OperatorTok{$}\NormalTok{distance[}\DecValTok{41}\OperatorTok{:}\DecValTok{80}\NormalTok{], }\DataTypeTok{paired =}\NormalTok{ T, }\DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+
+
+\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{(}\FloatTok{50.3} \OperatorTok{-}\StringTok{ }\FloatTok{49.9}\NormalTok{)}\OperatorTok{^}\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{(}\FloatTok{61.1} \OperatorTok{-}\StringTok{ }\FloatTok{49.9}\NormalTok{)}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{(}\FloatTok{38.3} \OperatorTok{-}\StringTok{ }\FloatTok{49.9}\NormalTok{)}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

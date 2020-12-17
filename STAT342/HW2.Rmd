@@ -1,0 +1,162 @@
+---
+title: "HW2"
+author: "Henrique Magalhaes Rio"
+output:
+  word_document: default
+  pdf_document: default
+header-includes:
+- \usepackage{xcolor}
+- \usepackage{framed}
+---
+<!-- STUDENTS: change the "title" and "author above"
+DO NOT EDIT THE SECTION BELOW -->
+\colorlet{shadecolor}{gray!10}
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+library(caret)
+library(Matrix)
+library(MASS)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 4, fig.height = 4, tidy = TRUE)
+```
+\newcommand{\answerstart}{ \colorlet{shadecolor}{orange!20}
+\begin{shaded} }
+\newcommand{\answerend}{  \end{shaded} \colorlet{shadecolor}{gray!10}}
+<!-- STUDENTS: DO NOT EDIT THE SECTION ABOVE 
+start here, insert homework below -->
+
+# Question 1
+
+
+
+
+
+
+
+
+#Question 2 
+
+$Var[Y_1-Y_2]=E[Y_1^2]-2E[Y_1Y_2]+E[Y_2^2]−(E[Y_1])^2+2E[Y_1]E[Y_2]−(E[Y_2])^2$
+
+$Var[Y_1-Y_2]=E[Y_1^2]−(E[Y_1])^2+E[Y_2^2]−(E[Y_2])^2-2E[Y_1Y_2]+2E[Y_1]E[Y_2]$
+
+since,
+
+$Var[Y_1]=E[Y_1^2]-E[Y_1]^2$
+
+$Var[Y_2]=E[Y_2^2]-E[Y_2]^2$
+
+$Cov[Y_1,Y_2]=E[Y_1Y_2]-E[Y_1]E[Y_2]$
+
+we can make the substitutions and get:
+
+$Var[Y_1-Y_2]=Var[Y_1]+Var[Y_2]-2Cov[Y_1,Y_2]$
+
+and since $Y_1$ and $Y_2$ ara independent $Cov[Y_1,Y_2]=0$, therefore,
+
+$Var[Y_1-Y_2]=Var[Y_1]+Var[Y_2]$
+
+
+
+#Question 3
+
+## Part 1 (A)
+using the the Z table we get,
+p-value=0.0217
+
+## Part 1 (B)
+
+p-value=0.0434
+
+
+
+# Question 4
+
+
+```{r, echo=FALSE}
+#question 4
+set.seed(1111)
+x = seq(0, 20, by = 0.01)
+dens = dgamma(x,shape=2,scale=3)
+plot(x, dens, type = "l", xlab = "y", ylab = "f(y)", lwd = 2)
+```
+
+
+
+# Question 5
+
+$\mu=6$
+$\sigma^2=18$
+$\sigma=4.2426$
+
+
+# Question 6
+
+Yes, because it's value depends on the values of the sample, so each sample that is taken will have a different mean.
+
+# Question 7
+
+```{r, include=FALSE}
+#question7
+set.seed(2002)
+randsample <- rgamma(12,shape=2,scale=3)
+mean(randsample)
+sd(randsample)
+sd(randsample)^2
+
+```
+
+Mean=4.928359
+sd=4.655707
+variance=21.6756
+
+
+
+# Question 8
+
+```{r}
+
+#question 8
+set.seed(342)
+nloop <- 1000
+sampMean <- rep(NA, nloop)
+set.seed(2020)
+for(i in 1:nloop)
+{
+	randSamp <- rgamma(12,shape=2,scale=3)
+	sampMean[i] <- mean(randSamp)
+	
+}
+
+Zval <- (sampMean-6)/(4.2426/sqrt(12))
+
+hist(Zval, xlim = c(-6,6),breaks = 30, freq = F, 
+     main = "Histogram of Standardized Sample Means (CLT)", 
+     xlab = "Z-test")
+
+x <- seq(-5, 5, .01)
+y <- dnorm(x)
+lines(x,y, col = 2)
+
+```
+
+
+
+#Question 9
+
+
+Yes, the majority of the histogram is lined up with the standard normal curve.
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(),  echo = TRUE, eval = FALSE}
+
+```
+

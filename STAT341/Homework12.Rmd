@@ -1,0 +1,249 @@
+---
+title: 'Homework #11'
+author: "Henrique Magalhaes Rio"
+date: "11/19/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+library(caret)
+
+```
+
+# Question 1 
+
+```{r, include=FALSE}
+
+bike <-read.csv("bike_sharing.csv")
+biket <-read.csv("bike_sharing_test.csv")
+
+```
+
+## Part 1 (a)
+
+```{r,include=FALSE}
+
+set.seed(2019)
+split_indices <- createDataPartition(y=bike$registered_users,
+                    p=0.67,
+                    times=1)
+
+
+train <- bike[split_indices$Resample1,]
+validate <- bike[-split_indices$Resample1,]
+
+mean(train$registered_users)
+
+```
+
+average number of registered users in training dataset :  3651.394
+
+
+
+## Part 2 (b)
+
+
+Model 1
+
+Variables:
+Season
+log of temperature feel
+weather
+
+Model 2
+
+Variables:
+log of temperature feel
+
+
+Model 3
+
+Variables:
+Season
+log of temperature feel
+weather
+
+Interaction:
+season*weather
+
+
+
+
+
+
+## Part 3 (c)
+
+```{r, include=FALSE}
+mod1 <- lm(registered_users~season+log(tempfeel)+weather, data=train)
+
+mean((train$registered_users-fitted(mod1))^2)
+
+mod2 <- lm(registered_users~log(tempfeel), data=train)
+
+mean((train$registered_users-fitted(mod2))^2)
+
+mod3 <- lm(registered_users~season*weather+log(tempfeel), data=train)
+
+mean((train$registered_users-fitted(mod3))^2)
+
+
+```
+
+Model 1:
+
+In-sample MSE= 1368491
+
+Adjusted $R^2$=0.4606
+
+Model 2:
+
+In-sample MSE= 1734153
+
+Adjusted $R^2$=0.3164
+
+Model 3:
+
+In-sample MSE= 1356884
+
+Adjusted $R^2$=0.3652
+
+## Part 4 (d)
+
+```{r, include=FALSE}
+mean((validate$registered_users-predict(mod1, newdata =train))^2)
+mean((validate$registered_users-predict(mod2, newdata =train))^2)
+mean((validate$registered_users-predict(mod3, newdata =train))^2)
+```
+
+Model 1:
+
+Validation data MSE= 1860843
+
+Model 2:
+
+Validation data MSE= 1946875
+
+Model 3:
+
+Validation data MSE= 1864512
+
+
+## Part 5 (e)
+
+Model 1 is the best as it has the smallest MSE for the validation data.
+
+## Part 6 (f)
+
+```{r,include=FALSE}
+mean((biket$registered_users-predict(mod1, newdata =biket))^2)
+
+
+```
+
+Model 1 MSE for test data :42133772
+
+
+
+
+# Question 2
+
+## Part 1 (a)
+
+
+Model 1:
+
+  variables: log(windspeed) and season.
+
+  interaction: log(windspeed)*season.
+
+
+Model 2:
+
+variables: weather and temperature
+
+
+Model 3: 
+
+variables: year and temperature.
+
+## Part 2 (b)
+
+```{r, include=FALSE}
+
+fitControl <- trainControl(method = "cv",
+                           number = 10)
+
+
+set.seed(1) # Do this each time, with same value
+mod1cv <- train(casual_users~log(windspeed)*season,
+            data=bike,
+            method="lm",
+            trControl=fitControl)
+
+mod1cv
+
+
+mod2cv <- train(casual_users~weather+temp,
+            data=bike,
+            method="lm",
+            trControl=fitControl)
+
+mod2cv
+
+
+
+mod3cv <- train(casual_users~year+temp,
+            data=bike,
+            method="lm",
+            trControl=fitControl)
+
+mod3cv
+
+
+
+
+
+```
+
+
+Model 1: RMSE=582.3858
+
+Model 2: RMSE=561.3365
+
+Model 3: RMSE=554.9514
+
+
+## Part 3 (c)
+
+Model 3 is the best due to the smallest cross-validation RMSE.
+
+## Part 4 (d)
+
+```{r, include=FALSE}
+
+
+
+mean((biket$casual_users-predict(mod3cv, newdata =biket))^2)
+
+```
+
+MSE=215594.5
+
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

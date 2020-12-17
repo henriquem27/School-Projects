@@ -1,0 +1,169 @@
+---
+title: "HW5"
+author: "Henrique Magalhaes Rio"
+output:
+  word_document: default
+  pdf_document: default
+header-includes:
+- \usepackage{xcolor}
+- \usepackage{framed}
+---
+<!-- STUDENTS: change the "title" and "author above"
+DO NOT EDIT THE SECTION BELOW -->
+\colorlet{shadecolor}{gray!10}
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+library(caret)
+library(Matrix)
+library(MASS)
+library(formatR)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 4, fig.height = 4, tidy = TRUE)
+```
+\newcommand{\answerstart}{ \colorlet{shadecolor}{orange!20}
+\begin{shaded} }
+\newcommand{\answerend}{  \end{shaded} \colorlet{shadecolor}{gray!10}}
+<!-- STUDENTS: DO NOT EDIT THE SECTION ABOVE 
+start here, insert homework below -->
+
+# Question 1
+
+R is treating the groups as numbers instead of treating as a as factor. it could be fixed by first transforming the data using as.factor
+
+
+
+# Question 2
+
+
+## Part 1 (A)
+
+```{r,echo=FALSE}
+
+#Q2A
+ox <- read_csv("oxygen.csv")
+
+
+d <- as.factor(ox$distance)
+
+
+
+ggplot(data=ox,aes(x=d,y=ox$oxygen)) + 
+  geom_boxplot(fill="gray")+
+  labs(title="Concentration of Oxygen by distance ",x="Distance", y = "Oxygen (mg/L)")+
+  theme_classic()
+
+
+```
+
+
+
+## Part 2 (B)
+
+```{r,echo=FALSE}
+
+#q2B
+lmout <- lm(ox$oxygen~d)
+anova(lmout)
+```
+
+## Part 3 (C)
+
+We reject the null hyphoteses that the average concentration of oxygen between all distances are equal, and can conclude that at least one of them differs. (P-value<0.0001)
+
+
+## Part 4 (C)
+
+```{r}
+plot(lmout)
+```
+
+
+
+## Part 5 (D)
+
+Looking at the QQ plot, we can conclude that the assumption of normality of has been violated due the the "S" shaped graph. However, despite a light cone shape on the residuals vs fitted graph i do not believe to be enough to discard the equality of variance assumption.
+
+
+
+
+# Question 3
+
+
+```{r,include=FALSE}
+
+#Q3
+tcrit <-qt(.975,df=20)
+
+ci<- 94.5 +c(-1,1)*tcrit*sqrt(10.14/6)
+```
+
+95%CI for control= (91.78825,97.21175)
+
+# Question 4
+
+```{r,echo=FALSE}
+#Q4
+LSD <-tcrit*sqrt(2*10.14/6)
+
+LSD
+
+```
+
+
+
+# Question 5
+
+
+
+
+we fail to reject the null hyphoteses that the there is no difference between the average growth of the control group and the ABA treatment. 95%CIcontrol=(91.78825,97.21175)
+
+
+# Question 6
+
+
+```{r,echo=FALSE}
+#q6
+lsdb <- qt(1-0.05/(2*4),df=20)*sqrt(2*10.14/6)
+lsdb
+```
+
+
+
+# Question 7
+
+```{r,echo=FALSE}
+lsdb <- qt(1-0.05/(2*4),df=20)*sqrt(2*10.14/6)
+ci<- 94.5 +c(-1,1)*lsdb
+ci
+```
+95%CIcontrol=(89.45453,99.54547)
+
+
+# Question 8
+we fail to reject the null hyphoteses that the there is no difference between the average growth of the control group and the ABA treatment. 95%CIcontrol=(89.45453,99.54547)
+
+
+# Question 9
+
+the coverage is 0.7
+
+
+
+
+
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(),  echo = TRUE, eval = FALSE}
+
+```
+

@@ -1,0 +1,110 @@
+---
+title: 'Homework ## Template'
+author: "Your Name Here"
+date: "Date Here"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+
+```
+
+
+# About this template
+
+This file provides a template that you should use for homework assignments. 
+
+## R Markdown 
+
+Markdown is a simple formatting syntax for writing HTML, PDF, and Word documents using a common interface. This template is setup to generate pdf or MS Word (doc) files, since those are well-supported by the Canvas system. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+You can enter text into the document using the editor built into RStudio. When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r iris, echo=TRUE}
+# R code goes in blocks like this one.
+# Use comments to help document your code
+head(iris)
+```
+
+In general, your homework responses should not include R code or raw R output unless the question specifically requests them.  To prevent them from being printed, set `include=FALSE` in the code block header. For example:
+
+```{r iris2, include=FALSE}
+# Viewing the iris dataset, the second time
+head(iris)
+```
+
+Documentation for other chunk options is available at <https://yihui.name/knitr/options/>
+
+## Headings
+
+If using this template for your homework, delete the text within these sections and add your homework answers.
+
+Type `# Question (number here)` on a line to create a header for each question. For problems with sub-parts, a secondary heading can be created by typing `## Part (letter here)` on a new line.
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE,  out.width="75%"}
+# Code for the plot here
+ggplot(pressure) + 
+    geom_point(aes(x=temperature, y=pressure)) +
+    xlab("Temperature (deg C)") + ylab("Pressure (mmHg)")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. It would not work in this case to set `include=FALSE`, since that would also hide the plot output.
+
+## Including Math
+
+RMarkdown allows you to easily incorporate formatted mathematical notation using LaTeX. Mathematical expressions should be typed between dollar signs (\$). For example, we can write $x + y$. 
+
+* Subscripts can be added using underscore: $x_1$
+* Superscripts can be added using the caret character: $x^2$
+* Greek letters can be added by typing \\ followed by the letter name: $\beta$
+* Equations can be centered and set off from text using two dollar signs: $$a^2 + b^2 = c^2$$
+
+
+Note: Creating a MS Word document does not require an installation of LaTeX on your computer. Creating a PDF output file does. A simple way to do this to install 'tinytex' by running the following commands:
+
+```{r echo=TRUE, eval=FALSE}
+# Only need to do this *once* for your computer
+# in order to be able to create PDFs with math notation
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+
+
+# Question 1
+
+## Part 1(a)
+Responses here
+
+## Part 1(b)
+Responses here
+
+# Question 2
+Responses here.
+
+# Question 3
+
+The figure for this question is:
+
+```{r pressure2, echo=FALSE,  out.width="75%"}
+# Code for the plot here
+ggplot(pressure) + 
+    geom_point(aes(x=temperature, y=pressure)) +
+    xlab("Temperature (deg C)") + ylab("Pressure (mmHg)")
+```
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

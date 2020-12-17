@@ -1,0 +1,177 @@
+---
+title: 'Homework #11'
+author: "Henrique Magalhaes Rio"
+date: "11/19/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+
+```
+
+# Question 1 
+
+```{r, include=FALSE}
+
+words <-read.csv("english_words.csv")
+
+```
+
+## Part 1 (a)
+
+```{r, echo=FALSE}
+
+ggplot(words,aes(y=WrittenFrequency,x=LengthInLetters)) +theme_bw()+ geom_point() +geom_smooth(method=lm, se=FALSE)+ggtitle("frenquency of words vs lenght of the words")+xlab("Lenght of the word")+ylab("Frenquency of the word")
+wordslm <- lm(WrittenFrequency~LengthInLetters, data =words)
+
+
+```
+## Part 2 (b)
+
+
+```{r, echo=FALSE}
+
+ggplot(words,aes(y=log(WrittenFrequency),x=LengthInLetters)) +theme_bw()+ geom_point() +ggtitle("log of frenquency of words vs lenght of the words")+xlab("Lenght of the word")+ylab("log(Frenquency of the word)")
+
+
+
+```
+
+
+
+## Part 3 (c)
+
+```{r,include=FALSE}
+
+wordslm2 <- lm(log(WrittenFrequency)~LengthInLetters, data =words)
+
+```
+$\hat\beta_0$=5.65479
+$\hat\beta_1$=-0.146
+
+
+## Part 4 (d)
+
+A difference of 1 percentage point in the lenght of the words is associated with a negative difference of 0.146 (95% CI: -0.236,-0.0562) in the estimated average  of the logarithm of word frenquency.
+
+## Part 4 (e)
+
+A difference of 1 percentage point in the lenght of the words is associated with a multiplicative  difference of -0.146 (95% CI: -0.236,-0.0562) in the geometric mean of word frequency.
+
+
+
+# Question 2
+
+```{r, include=FALSE}
+psa <-read.csv("psa_complete.csv")
+
+```
+
+## Part 1 (a)
+
+```{r,echo=FALSE}
+
+ggplot(psa,aes(y=obstime,x=nadirpsa)) +theme_bw()+ geom_point() + ylab("Days in remission")+ xlab("lowest concentration of PSA")
+
+```
+
+
+
+## Part 2 (b)
+
+```{r,echo=FALSE}
+
+ggplot(psa,aes(y=obstime,x=log(nadirpsa))) +theme_bw()+ geom_point()+ ylab("Days in remission")+ xlab("log  of lowest concentration of PSA")
+
+```
+
+## Part 3 (c)
+
+```{r,include=FALSE}
+
+psalm <- lm(obstime~log(nadirpsa),data=psa)
+
+```
+
+-3.93 is the difference in time spent in remession after treatment for a e-fold difference in the lowest concentration of PSA
+
+
+# Question 3 
+
+## Part 1 (a)
+```{r,include=FALSE}
+
+subject1 <- subset(Theoph, Subject==1)
+```
+
+## Part 2 (b)
+
+```{r, echo = FALSE}
+ggplot(subject1,aes(y=conc,x=Time)) +theme_bw()+ geom_point()+ylab("Concentration")
+```
+
+
+## Part 3 (c)
+
+```{r, echo = FALSE}
+ggplot(subject1,aes(y=conc,x=Time)) +theme_bw()+ geom_point() +ylab("Concentration")+ geom_smooth(aes(x=Time, y=conc),
+data=subject1,
+method="lm",
+formula=y~ns(x, df=3))
+
+
+```
+
+## Part 4 (d)
+
+```{r, include=FALSE}
+sublm <- lm(conc~ns(Time,3), data = subject1)
+```
+
+$\hat\beta_0$=3.10
+$\hat\beta_1$=-3.29
+$\hat\beta_2$=7.97
+$\hat\beta_3$=-3.94
+
+## Part 5 (e)
+
+```{r, echo = FALSE}
+ggplot(subject1,aes(y=conc,x=Time)) +theme_bw()+ylab("Concentration") +geom_point() + geom_smooth(aes(x=Time, y=conc),
+data=subject1,
+method="lm",
+formula=y~ns(x, df=4))
+
+
+```
+
+## Part 6 (f)
+
+```{r,include=FALSE}
+sublm2 <- lm(conc~ns(Time,4), data = subject1)
+```
+
+$\hat\beta_0$=1.28
+$\hat\beta_1$=5.86
+$\hat\beta_2$=0.821
+$\hat\beta_3$=14.1
+$\hat\beta_4$=-3.93
+
+## Part 7 (g)
+based on the $R^2$ the model with 4 splines ($R^2$=0.927) is a lot better then the model with 3 splines ($R^2$=0.6895)
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

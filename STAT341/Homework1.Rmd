@@ -1,0 +1,31 @@
+---
+title: 'Homework #1'
+author: "Henrique Magalhaes Rio"
+date: "8/28/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+```
+
+```{r}
+data <- read.csv("Video_Games_Sales_as_at_22_Dec_2016.csv")
+
+```
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

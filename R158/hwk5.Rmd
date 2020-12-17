@@ -1,0 +1,196 @@
+---
+title: "HWK5"
+author: "Henrique"
+date: "April 14, 2019"
+output: word_document
+---
+
+
+
+Question 1a)
+```{r}
+
+
+jan = read.csv("january_temp.csv", header = TRUE)
+
+attach(jan)
+plot(Lat,Long,xlab= "Latitude",ylab= "Longitude")
+
+
+detach(jan)
+
+
+```
+Yes, it looks scattered as I expected.
+
+
+Question 1b)
+```{r}
+
+attach(jan)
+estjan <- lm(JanTemp~Lat)
+summary(estjan)
+plot(JanTemp~Lat)
+
+objects(estjan)
+abline(estjan$coefficients)
+
+
+JanTemp=108.73-2.11*Lat
+
+detach(jan)
+
+
+
+
+```
+
+The R squared statistisc is 0.7192.
+
+
+Question 1c)
+
+
+```{r}
+attach(jan)
+estjan2 <- lm(JanTemp~Long)
+summary(estjan2)
+plot(JanTemp~Long)
+
+objects(estjan2)
+abline(estjan2$coefficients)
+
+
+JanTemp2=1.97-2.11*Long
+
+detach(jan)
+
+
+```
+the R squared statistics is 0.02096.
+
+
+
+question 1)d)
+latitude had a much better prediction, which is shown by its r squared statistic being 1.
+
+
+
+
+Question 1)e)
+
+```{r}
+
+attach(jan)
+estjan3 <- lm(JanTemp~Long+Lat)
+summary(estjan3)
+
+
+
+JanTemp3=108.73-2.11*Lat*Long
+
+detach(jan)
+
+```
+Lat was much better at predicting. lat coefficient changed but long didn't 
+
+question 1)f)
+```{r}
+
+
+
+
+```
+
+
+question 1)g)
+
+```{r}
+
+  anova(estjan,estjan2,estjan3)
+
+
+```
+
+
+
+question 2)
+
+
+```{r}
+x=rnorm(100,10,10)
+z = t.test(x)
+z$statistic
+lol <- rep(0,2)
+lol[1]<-z$statistic
+```
+
+
+```{r}
+
+
+
+t1t <- rep(0,10e4)
+for (i in 1:length(t1t)){
+  x=rnorm(100,10,10)
+  z = t.test(x)
+  t1t[i] <- z$statistic
+}
+
+hist(t1t)
+
+```
+
+
+
+
+question 3a)
+```{r}
+
+t2t <- rep(0,10000)
+for (i in 1:10000){
+  x<-(rnorm(100,5,1)+rnorm(10,5,5))
+  z = t.test(x)
+  t2t[i] <- (z$statistic)
+  
+}
+
+
+hist(t2t)
+
+
+
+```
+
+3b)
+```{r}
+t2t <- rep(0,10000)
+for (i in 1:10000){
+  x<-(rnorm(100,5,1)+rnorm(10,5,5))
+  z = t.test(x,var.equal = TRUE)
+  t2t[i] <- (z$statistic)
+  
+}
+
+
+hist(t2t)
+```
+
+part c looks less skewed to the right when compared to part bv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

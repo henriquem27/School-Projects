@@ -1,0 +1,353 @@
+spray_date,spray_rate,wash_date,wash_type,item_type,electric_dryer,drying_split,conc,lod,sd_block,clrep
+6/21/17,1x,6/21/17,none,workshirt,no,NA,3.8193,NA,1,3
+6/21/17,1x,6/21/17,none,jeans,no,NA,6.0448,NA,1,3
+6/21/17,1x,6/21/17,none,100 tshirt,no,NA,5.487,NA,1,3
+6/21/17,1x,6/21/17,none,50:50 tshirt,no,NA,3.2952,NA,1,3
+6/21/17,1x,6/21/17,agitator,onesie,no,UV,0.0471,NA,1,1
+6/21/17,1x,6/21/17,agitator,workshirt,no,UV,0.4594,NA,1,1
+6/21/17,1x,6/21/17,agitator,jeans,no,UV,2.0742,NA,1,1
+6/21/17,1x,6/21/17,agitator,100 tshirt,no,UV,0.4267,NA,1,1
+6/21/17,1x,6/21/17,agitator,50:50 tshirt,no,UV,0.8498,NA,1,1
+6/21/17,1x,6/21/17,agitator,onesie,no,WND,0.0416,NA,1,1
+6/21/17,1x,6/21/17,agitator,workshirt,no,WND,0.1542,NA,1,1
+6/21/17,1x,6/21/17,agitator,jeans,no,WND,2.3824,NA,1,1
+6/21/17,1x,6/21/17,agitator,100 tshirt,no,WND,0.311,NA,1,1
+6/21/17,1x,6/21/17,agitator,50:50 tshirt,no,WND,1.0063,NA,1,1
+6/21/17,1x,6/21/17,agitator,onesie,yes,NA,0.0422,NA,1,1
+6/21/17,1x,6/21/17,agitator,workshirt,yes,NA,0.454,NA,1,1
+6/21/17,1x,6/21/17,agitator,jeans,yes,NA,1.8841,NA,1,1
+6/21/17,1x,6/21/17,agitator,100 tshirt,yes,NA,1.0493,NA,1,1
+6/21/17,1x,6/21/17,agitator,50:50 tshirt,yes,NA,0.6231,NA,1,1
+6/21/17,1x,6/21/17,agitator,onesie,no,CL,0.0437,NA,1,1
+6/21/17,1x,6/21/17,agitator,workshirt,no,CL,0.5081,NA,1,1
+6/21/17,1x,6/21/17,agitator,jeans,no,CL,1.9156,NA,1,1
+6/21/17,1x,6/21/17,agitator,100 tshirt,no,CL,0.3195,NA,1,1
+6/21/17,1x,6/21/17,agitator,50:50 tshirt,no,CL,0.9256,NA,1,1
+6/21/17,1x,6/21/17,HE,onesie,no,UV,0.002,NA,1,2
+6/21/17,1x,6/21/17,HE,workshirt,no,UV,0.1035,NA,1,2
+6/21/17,1x,6/21/17,HE,jeans,no,UV,0.0743,NA,1,2
+6/21/17,1x,6/21/17,HE,100 tshirt,no,UV,0.0087,NA,1,2
+6/21/17,1x,6/21/17,HE,50:50 tshirt,no,UV,0.0291,NA,1,2
+6/21/17,1x,6/21/17,HE,onesie,no,WND,0,NA,1,2
+6/21/17,1x,6/21/17,HE,workshirt,no,WND,0.1732,NA,1,2
+6/21/17,1x,6/21/17,HE,jeans,no,WND,0.0785,NA,1,2
+6/21/17,1x,6/21/17,HE,100 tshirt,no,WND,0.0127,NA,1,2
+6/21/17,1x,6/21/17,HE,50:50 tshirt,no,WND,0.0375,NA,1,2
+6/21/17,1x,6/21/17,HE,onesie,yes,NA,0.018,NA,1,2
+6/21/17,1x,6/21/17,HE,workshirt,yes,NA,0.0424,NA,1,2
+6/21/17,1x,6/21/17,HE,jeans,yes,NA,0.5351,NA,1,2
+6/21/17,1x,6/21/17,HE,100 tshirt,yes,NA,0.0101,NA,1,2
+6/21/17,1x,6/21/17,HE,50:50 tshirt,yes,NA,0.6005,NA,1,2
+6/21/17,1x,6/21/17,HE,onesie,no,CL,0.0029,NA,1,2
+6/21/17,1x,6/21/17,HE,workshirt,no,CL,0.0324,NA,1,2
+6/21/17,1x,6/21/17,HE,jeans,no,CL,0.0787,NA,1,2
+6/21/17,1x,6/21/17,HE,100 tshirt,no,CL,0.0119,NA,1,2
+6/21/17,1x,6/21/17,HE,50:50 tshirt,no,CL,0.0146,NA,1,2
+6/21/17,1x,6/22/17,none,workshirt,no,NA,4.8754,NA,1,6
+6/21/17,1x,6/22/17,none,jeans,no,NA,4.433,NA,1,6
+6/21/17,1x,6/22/17,none,100 tshirt,no,NA,4.8802,NA,1,6
+6/21/17,1x,6/22/17,none,50:50 tshirt,no,NA,5.0199,NA,1,6
+6/21/17,1x,6/22/17,agitator,onesie,no,UV,0.1072,NA,1,4
+6/21/17,1x,6/22/17,agitator,workshirt,no,UV,0.7689,NA,1,4
+6/21/17,1x,6/22/17,agitator,jeans,no,UV,2.5811,NA,1,4
+6/21/17,1x,6/22/17,agitator,100 tshirt,no,UV,1.6117,NA,1,4
+6/21/17,1x,6/22/17,agitator,50:50 tshirt,no,UV,1.5601,NA,1,4
+6/21/17,1x,6/22/17,agitator,onesie,no,WND,0.1187,NA,1,4
+6/21/17,1x,6/22/17,agitator,workshirt,no,WND,0.9341,NA,1,4
+6/21/17,1x,6/22/17,agitator,jeans,no,WND,3.7929,NA,1,4
+6/21/17,1x,6/22/17,agitator,100 tshirt,no,WND,1.226,NA,1,4
+6/21/17,1x,6/22/17,agitator,50:50 tshirt,no,WND,1.3842,NA,1,4
+6/21/17,1x,6/22/17,agitator,onesie,yes,NA,0.2465,NA,1,4
+6/21/17,1x,6/22/17,agitator,workshirt,yes,NA,1.5,NA,1,4
+6/21/17,1x,6/22/17,agitator,jeans,yes,NA,2.6797,NA,1,4
+6/21/17,1x,6/22/17,agitator,100 tshirt,yes,NA,1.072,NA,1,4
+6/21/17,1x,6/22/17,agitator,50:50 tshirt,yes,NA,1.8322,NA,1,4
+6/21/17,1x,6/22/17,agitator,onesie,no,CL,0.2548,NA,1,4
+6/21/17,1x,6/22/17,agitator,workshirt,no,CL,1.1401,NA,1,4
+6/21/17,1x,6/22/17,agitator,jeans,no,CL,2.417,NA,1,4
+6/21/17,1x,6/22/17,agitator,100 tshirt,no,CL,1.3346,NA,1,4
+6/21/17,1x,6/22/17,agitator,50:50 tshirt,no,CL,2.1215,NA,1,4
+6/21/17,1x,6/22/17,HE,onesie,no,UV,0.2721,NA,1,5
+6/21/17,1x,6/22/17,HE,workshirt,no,UV,1.038,NA,1,5
+6/21/17,1x,6/22/17,HE,jeans,no,UV,2.6692,NA,1,5
+6/21/17,1x,6/22/17,HE,100 tshirt,no,UV,1.3642,NA,1,5
+6/21/17,1x,6/22/17,HE,50:50 tshirt,no,UV,1.704,NA,1,5
+6/21/17,1x,6/22/17,HE,onesie,no,WND,0.2221,NA,1,5
+6/21/17,1x,6/22/17,HE,workshirt,no,WND,1.123,NA,1,5
+6/21/17,1x,6/22/17,HE,jeans,no,WND,2.9258,NA,1,5
+6/21/17,1x,6/22/17,HE,100 tshirt,no,WND,1.4523,NA,1,5
+6/21/17,1x,6/22/17,HE,50:50 tshirt,no,WND,1.0411,NA,1,5
+6/21/17,1x,6/22/17,HE,onesie,yes,NA,0.279,NA,1,5
+6/21/17,1x,6/22/17,HE,workshirt,yes,NA,1.3213,NA,1,5
+6/21/17,1x,6/22/17,HE,jeans,yes,NA,2.9966,NA,1,5
+6/21/17,1x,6/22/17,HE,100 tshirt,yes,NA,1.3981,NA,1,5
+6/21/17,1x,6/22/17,HE,50:50 tshirt,yes,NA,1.5462,NA,1,5
+6/21/17,1x,6/22/17,HE,onesie,no,CL,0.2675,NA,1,5
+6/21/17,1x,6/22/17,HE,workshirt,no,CL,0.8868,NA,1,5
+6/21/17,1x,6/22/17,HE,jeans,no,CL,2.7034,NA,1,5
+6/21/17,1x,6/22/17,HE,100 tshirt,no,CL,1.3483,NA,1,5
+6/21/17,1x,6/22/17,HE,50:50 tshirt,no,CL,1.4541,NA,1,5
+6/28/17,1x,6/28/17,none,workshirt,no,NA,5.5431,NA,2,9
+6/28/17,1x,6/28/17,none,jeans,no,NA,4.9337,NA,2,9
+6/28/17,1x,6/28/17,none,100 tshirt,no,NA,2.7683,NA,2,9
+6/28/17,1x,6/28/17,none,50:50 tshirt,no,NA,3.3325,NA,2,9
+6/28/17,1x,6/28/17,agitator,onesie,no,UV,0.1785,NA,2,7
+6/28/17,1x,6/28/17,agitator,workshirt,no,UV,0.6409,NA,2,7
+6/28/17,1x,6/28/17,agitator,jeans,no,UV,2.8912,NA,2,7
+6/28/17,1x,6/28/17,agitator,100 tshirt,no,UV,1.0837,NA,2,7
+6/28/17,1x,6/28/17,agitator,50:50 tshirt,no,UV,1.5337,NA,2,7
+6/28/17,1x,6/28/17,agitator,onesie,no,WND,0.1156,NA,2,7
+6/28/17,1x,6/28/17,agitator,workshirt,no,WND,0.7171,NA,2,7
+6/28/17,1x,6/28/17,agitator,jeans,no,WND,2.5125,NA,2,7
+6/28/17,1x,6/28/17,agitator,100 tshirt,no,WND,1.3627,NA,2,7
+6/28/17,1x,6/28/17,agitator,50:50 tshirt,no,WND,1.533,NA,2,7
+6/28/17,1x,6/28/17,agitator,onesie,yes,NA,0.2464,NA,2,7
+6/28/17,1x,6/28/17,agitator,workshirt,yes,NA,0.9147,NA,2,7
+6/28/17,1x,6/28/17,agitator,jeans,yes,NA,3.3187,NA,2,7
+6/28/17,1x,6/28/17,agitator,100 tshirt,yes,NA,1.3868,NA,2,7
+6/28/17,1x,6/28/17,agitator,50:50 tshirt,yes,NA,1.3209,NA,2,7
+6/28/17,1x,6/28/17,agitator,onesie,no,CL,0.1148,NA,2,7
+6/28/17,1x,6/28/17,agitator,workshirt,no,CL,0.964,NA,2,7
+6/28/17,1x,6/28/17,agitator,jeans,no,CL,2.1898,NA,2,7
+6/28/17,1x,6/28/17,agitator,100 tshirt,no,CL,1.0795,NA,2,7
+6/28/17,1x,6/28/17,agitator,50:50 tshirt,no,CL,1.3236,NA,2,7
+6/28/17,1x,6/28/17,HE,onesie,no,UV,0.1949,NA,2,8
+6/28/17,1x,6/28/17,HE,workshirt,no,UV,0.7415,NA,2,8
+6/28/17,1x,6/28/17,HE,jeans,no,UV,2.07,NA,2,8
+6/28/17,1x,6/28/17,HE,100 tshirt,no,UV,0.7874,NA,2,8
+6/28/17,1x,6/28/17,HE,50:50 tshirt,no,UV,0.9347,NA,2,8
+6/28/17,1x,6/28/17,HE,onesie,no,WND,0.1749,NA,2,8
+6/28/17,1x,6/28/17,HE,workshirt,no,WND,0.6338,NA,2,8
+6/28/17,1x,6/28/17,HE,jeans,no,WND,2.34,NA,2,8
+6/28/17,1x,6/28/17,HE,100 tshirt,no,WND,0.6322,NA,2,8
+6/28/17,1x,6/28/17,HE,50:50 tshirt,no,WND,1.2356,NA,2,8
+6/28/17,1x,6/28/17,HE,onesie,yes,NA,0.3052,NA,2,8
+6/28/17,1x,6/28/17,HE,workshirt,yes,NA,0.7266,NA,2,8
+6/28/17,1x,6/28/17,HE,jeans,yes,NA,1.8392,NA,2,8
+6/28/17,1x,6/28/17,HE,100 tshirt,yes,NA,1.0041,NA,2,8
+6/28/17,1x,6/28/17,HE,50:50 tshirt,yes,NA,0.9579,NA,2,8
+6/28/17,1x,6/28/17,HE,onesie,no,CL,0.2448,NA,2,8
+6/28/17,1x,6/28/17,HE,workshirt,no,CL,0.7146,NA,2,8
+6/28/17,1x,6/28/17,HE,jeans,no,CL,2.2007,NA,2,8
+6/28/17,1x,6/28/17,HE,100 tshirt,no,CL,0.8882,NA,2,8
+6/28/17,1x,6/28/17,HE,50:50 tshirt,no,CL,1.0603,NA,2,8
+6/28/17,1x,6/29/17,none,workshirt,no,NA,3.3604,NA,2,12
+6/28/17,1x,6/29/17,none,jeans,no,NA,5.0175,NA,2,12
+6/28/17,1x,6/29/17,none,100 tshirt,no,NA,3.7187,NA,2,12
+6/28/17,1x,6/29/17,none,50:50 tshirt,no,NA,3.3098,NA,2,12
+6/28/17,1x,6/29/17,agitator,onesie,no,UV,0.1817,NA,2,10
+6/28/17,1x,6/29/17,agitator,workshirt,no,UV,0.8178,NA,2,10
+6/28/17,1x,6/29/17,agitator,jeans,no,UV,2.8438,NA,2,10
+6/28/17,1x,6/29/17,agitator,100 tshirt,no,UV,1.1496,NA,2,10
+6/28/17,1x,6/29/17,agitator,50:50 tshirt,no,UV,1.4165,NA,2,10
+6/28/17,1x,6/29/17,agitator,onesie,no,WND,0.1775,NA,2,10
+6/28/17,1x,6/29/17,agitator,workshirt,no,WND,0.9275,NA,2,10
+6/28/17,1x,6/29/17,agitator,jeans,no,WND,3.3515,NA,2,10
+6/28/17,1x,6/29/17,agitator,100 tshirt,no,WND,1.3622,NA,2,10
+6/28/17,1x,6/29/17,agitator,50:50 tshirt,no,WND,1.3958,NA,2,10
+6/28/17,1x,6/29/17,agitator,onesie,yes,NA,0.1079,NA,2,10
+6/28/17,1x,6/29/17,agitator,workshirt,yes,NA,1.1975,NA,2,10
+6/28/17,1x,6/29/17,agitator,jeans,yes,NA,3.4543,NA,2,10
+6/28/17,1x,6/29/17,agitator,100 tshirt,yes,NA,1.4162,NA,2,10
+6/28/17,1x,6/29/17,agitator,50:50 tshirt,yes,NA,1.7581,NA,2,10
+6/28/17,1x,6/29/17,agitator,onesie,no,CL,0.1999,NA,2,10
+6/28/17,1x,6/29/17,agitator,workshirt,no,CL,1.455,NA,2,10
+6/28/17,1x,6/29/17,agitator,jeans,no,CL,2.3924,NA,2,10
+6/28/17,1x,6/29/17,agitator,100 tshirt,no,CL,1.1916,NA,2,10
+6/28/17,1x,6/29/17,agitator,50:50 tshirt,no,CL,1.5958,NA,2,10
+6/28/17,1x,6/29/17,HE,onesie,no,UV,0.2142,NA,2,11
+6/28/17,1x,6/29/17,HE,workshirt,no,UV,0.889,NA,2,11
+6/28/17,1x,6/29/17,HE,jeans,no,UV,2.8305,NA,2,11
+6/28/17,1x,6/29/17,HE,100 tshirt,no,UV,0.8714,NA,2,11
+6/28/17,1x,6/29/17,HE,50:50 tshirt,no,UV,1.3799,NA,2,11
+6/28/17,1x,6/29/17,HE,onesie,no,WND,0.21,NA,2,11
+6/28/17,1x,6/29/17,HE,workshirt,no,WND,0.7405,NA,2,11
+6/28/17,1x,6/29/17,HE,jeans,no,WND,2.5896,NA,2,11
+6/28/17,1x,6/29/17,HE,100 tshirt,no,WND,1.3537,NA,2,11
+6/28/17,1x,6/29/17,HE,50:50 tshirt,no,WND,1.3294,NA,2,11
+6/28/17,1x,6/29/17,HE,onesie,yes,NA,0.1978,NA,2,11
+6/28/17,1x,6/29/17,HE,workshirt,yes,NA,1.0124,NA,2,11
+6/28/17,1x,6/29/17,HE,jeans,yes,NA,3.1932,NA,2,11
+6/28/17,1x,6/29/17,HE,100 tshirt,yes,NA,1.2829,NA,2,11
+6/28/17,1x,6/29/17,HE,50:50 tshirt,yes,NA,2.0614,NA,2,11
+6/28/17,1x,6/29/17,HE,onesie,no,CL,0.2681,NA,2,11
+6/28/17,1x,6/29/17,HE,workshirt,no,CL,1.4722,NA,2,11
+6/28/17,1x,6/29/17,HE,jeans,no,CL,2.8734,NA,2,11
+6/28/17,1x,6/29/17,HE,100 tshirt,no,CL,1.4758,NA,2,11
+6/28/17,1x,6/29/17,HE,50:50 tshirt,no,CL,1.6133,NA,2,11
+7/5/17,9x,7/5/17,none,workshirt,no,NA,47.5816,NA,3,15
+7/5/17,9x,7/5/17,none,jeans,no,NA,51.5107,NA,3,15
+7/5/17,9x,7/5/17,none,100 tshirt,no,NA,33.1268,NA,3,15
+7/5/17,9x,7/5/17,none,50:50 tshirt,no,NA,37.8861,NA,3,15
+7/5/17,9x,7/5/17,agitator,onesie,no,UV,2.526,NA,3,13
+7/5/17,9x,7/5/17,agitator,workshirt,no,UV,7.6195,NA,3,13
+7/5/17,9x,7/5/17,agitator,jeans,no,UV,24.8682,NA,3,13
+7/5/17,9x,7/5/17,agitator,100 tshirt,no,UV,10.7456,NA,3,13
+7/5/17,9x,7/5/17,agitator,50:50 tshirt,no,UV,15.4379,NA,3,13
+7/5/17,9x,7/5/17,agitator,onesie,no,WND,2.5439,NA,3,13
+7/5/17,9x,7/5/17,agitator,workshirt,no,WND,7.117,NA,3,13
+7/5/17,9x,7/5/17,agitator,jeans,no,WND,24.1408,NA,3,13
+7/5/17,9x,7/5/17,agitator,100 tshirt,no,WND,9.4682,NA,3,13
+7/5/17,9x,7/5/17,agitator,50:50 tshirt,no,WND,11.4194,NA,3,13
+7/5/17,9x,7/5/17,agitator,onesie,yes,NA,1.8951,NA,3,13
+7/5/17,9x,7/5/17,agitator,workshirt,yes,NA,9.788,NA,3,13
+7/5/17,9x,7/5/17,agitator,jeans,yes,NA,23.7829,NA,3,13
+7/5/17,9x,7/5/17,agitator,100 tshirt,yes,NA,11.526,NA,3,13
+7/5/17,9x,7/5/17,agitator,50:50 tshirt,yes,NA,13.3378,NA,3,13
+7/5/17,9x,7/5/17,agitator,onesie,no,CL,1.8232,NA,3,13
+7/5/17,9x,7/5/17,agitator,workshirt,no,CL,7.6129,NA,3,13
+7/5/17,9x,7/5/17,agitator,jeans,no,CL,25.2457,NA,3,13
+7/5/17,9x,7/5/17,agitator,100 tshirt,no,CL,8.5217,NA,3,13
+7/5/17,9x,7/5/17,agitator,50:50 tshirt,no,CL,12.5448,NA,3,13
+7/5/17,9x,7/5/17,HE,onesie,no,UV,1.198,NA,3,14
+7/5/17,9x,7/5/17,HE,workshirt,no,UV,7.2359,NA,3,14
+7/5/17,9x,7/5/17,HE,jeans,no,UV,10.6265,NA,3,14
+7/5/17,9x,7/5/17,HE,100 tshirt,no,UV,10.9647,NA,3,14
+7/5/17,9x,7/5/17,HE,50:50 tshirt,no,UV,11.3216,NA,3,14
+7/5/17,9x,7/5/17,HE,onesie,no,WND,1.2946,NA,3,14
+7/5/17,9x,7/5/17,HE,workshirt,no,WND,6.3242,NA,3,14
+7/5/17,9x,7/5/17,HE,jeans,no,WND,8.7956,NA,3,14
+7/5/17,9x,7/5/17,HE,100 tshirt,no,WND,10.1856,NA,3,14
+7/5/17,9x,7/5/17,HE,50:50 tshirt,no,WND,6.3909,NA,3,14
+7/5/17,9x,7/5/17,HE,onesie,yes,NA,2.3628,NA,3,14
+7/5/17,9x,7/5/17,HE,workshirt,yes,NA,8.349,NA,3,14
+7/5/17,9x,7/5/17,HE,jeans,yes,NA,22.2528,NA,3,14
+7/5/17,9x,7/5/17,HE,100 tshirt,yes,NA,8.3927,NA,3,14
+7/5/17,9x,7/5/17,HE,50:50 tshirt,yes,NA,11.3489,NA,3,14
+7/5/17,9x,7/5/17,HE,onesie,no,CL,1.2448,NA,3,14
+7/5/17,9x,7/5/17,HE,workshirt,no,CL,6.8804,NA,3,14
+7/5/17,9x,7/5/17,HE,jeans,no,CL,22.0788,NA,3,14
+7/5/17,9x,7/5/17,HE,100 tshirt,no,CL,7.6259,NA,3,14
+7/5/17,9x,7/5/17,HE,50:50 tshirt,no,CL,8.3937,NA,3,14
+7/5/17,9x,7/6/17,none,workshirt,no,NA,43.7906,NA,3,18
+7/5/17,9x,7/6/17,none,jeans,no,NA,42.758,NA,3,18
+7/5/17,9x,7/6/17,none,100 tshirt,no,NA,35.7028,NA,3,18
+7/5/17,9x,7/6/17,none,50:50 tshirt,no,NA,34.9292,NA,3,18
+7/5/17,9x,7/6/17,agitator,onesie,no,UV,0.7246,NA,3,16
+7/5/17,9x,7/6/17,agitator,workshirt,no,UV,5.5623,NA,3,16
+7/5/17,9x,7/6/17,agitator,jeans,no,UV,31.0064,NA,3,16
+7/5/17,9x,7/6/17,agitator,100 tshirt,no,UV,16.9477,NA,3,16
+7/5/17,9x,7/6/17,agitator,50:50 tshirt,no,UV,21.7545,NA,3,16
+7/5/17,9x,7/6/17,agitator,onesie,no,WND,1.294,NA,3,16
+7/5/17,9x,7/6/17,agitator,workshirt,no,WND,12.6585,NA,3,16
+7/5/17,9x,7/6/17,agitator,jeans,no,WND,32.0618,NA,3,16
+7/5/17,9x,7/6/17,agitator,100 tshirt,no,WND,16.2529,NA,3,16
+7/5/17,9x,7/6/17,agitator,50:50 tshirt,no,WND,19.1519,NA,3,16
+7/5/17,9x,7/6/17,agitator,onesie,yes,NA,3.4225,NA,3,16
+7/5/17,9x,7/6/17,agitator,workshirt,yes,NA,11.7439,NA,3,16
+7/5/17,9x,7/6/17,agitator,jeans,yes,NA,28.047,NA,3,16
+7/5/17,9x,7/6/17,agitator,100 tshirt,yes,NA,18.3449,NA,3,16
+7/5/17,9x,7/6/17,agitator,50:50 tshirt,yes,NA,18.2976,NA,3,16
+7/5/17,9x,7/6/17,agitator,onesie,no,CL,1.3716,NA,3,16
+7/5/17,9x,7/6/17,agitator,workshirt,no,CL,16.034,NA,3,16
+7/5/17,9x,7/6/17,agitator,jeans,no,CL,30.0547,NA,3,16
+7/5/17,9x,7/6/17,agitator,100 tshirt,no,CL,14.9117,NA,3,16
+7/5/17,9x,7/6/17,agitator,50:50 tshirt,no,CL,18.8032,NA,3,16
+7/5/17,9x,7/6/17,HE,onesie,no,UV,0.7427,NA,3,17
+7/5/17,9x,7/6/17,HE,workshirt,no,UV,6.1309,NA,3,17
+7/5/17,9x,7/6/17,HE,jeans,no,UV,12.7041,NA,3,17
+7/5/17,9x,7/6/17,HE,100 tshirt,no,UV,6.2833,NA,3,17
+7/5/17,9x,7/6/17,HE,50:50 tshirt,no,UV,5.3296,NA,3,17
+7/5/17,9x,7/6/17,HE,onesie,no,WND,1.4709,NA,3,17
+7/5/17,9x,7/6/17,HE,workshirt,no,WND,12.1762,NA,3,17
+7/5/17,9x,7/6/17,HE,jeans,no,WND,23.8754,NA,3,17
+7/5/17,9x,7/6/17,HE,100 tshirt,no,WND,12.705,NA,3,17
+7/5/17,9x,7/6/17,HE,50:50 tshirt,no,WND,11.0618,NA,3,17
+7/5/17,9x,7/6/17,HE,onesie,yes,NA,1.5169,NA,3,17
+7/5/17,9x,7/6/17,HE,workshirt,yes,NA,10.2201,NA,3,17
+7/5/17,9x,7/6/17,HE,jeans,yes,NA,24.6958,NA,3,17
+7/5/17,9x,7/6/17,HE,100 tshirt,yes,NA,14.3598,NA,3,17
+7/5/17,9x,7/6/17,HE,50:50 tshirt,yes,NA,17.3651,NA,3,17
+7/5/17,9x,7/6/17,HE,onesie,no,CL,1.1313,NA,3,17
+7/5/17,9x,7/6/17,HE,workshirt,no,CL,14.0267,NA,3,17
+7/5/17,9x,7/6/17,HE,jeans,no,CL,25.9189,NA,3,17
+7/5/17,9x,7/6/17,HE,100 tshirt,no,CL,15.0159,NA,3,17
+7/5/17,9x,7/6/17,HE,50:50 tshirt,no,CL,13.8323,NA,3,17
+7/12/17,9x,7/12/17,none,workshirt,no,NA,20.4481,NA,4,21
+7/12/17,9x,7/12/17,none,jeans,no,NA,18.7024,NA,4,21
+7/12/17,9x,7/12/17,none,100 tshirt,no,NA,13.4777,NA,4,21
+7/12/17,9x,7/12/17,none,50:50 tshirt,no,NA,17.2609,NA,4,21
+7/12/17,9x,7/12/17,agitator,onesie,no,UV,1.0586,NA,4,19
+7/12/17,9x,7/12/17,agitator,workshirt,no,UV,4.2367,NA,4,19
+7/12/17,9x,7/12/17,agitator,jeans,no,UV,21.1159,NA,4,19
+7/12/17,9x,7/12/17,agitator,100 tshirt,no,UV,3.7212,NA,4,19
+7/12/17,9x,7/12/17,agitator,50:50 tshirt,no,UV,8.6434,NA,4,19
+7/12/17,9x,7/12/17,agitator,onesie,no,WND,0.6176,NA,4,19
+7/12/17,9x,7/12/17,agitator,workshirt,no,WND,3.1535,NA,4,19
+7/12/17,9x,7/12/17,agitator,jeans,no,WND,14.4718,NA,4,19
+7/12/17,9x,7/12/17,agitator,100 tshirt,no,WND,2.51,NA,4,19
+7/12/17,9x,7/12/17,agitator,50:50 tshirt,no,WND,6.6449,NA,4,19
+7/12/17,9x,7/12/17,agitator,onesie,yes,NA,0.8392,NA,4,19
+7/12/17,9x,7/12/17,agitator,workshirt,yes,NA,5.11,NA,4,19
+7/12/17,9x,7/12/17,agitator,jeans,yes,NA,21.9217,NA,4,19
+7/12/17,9x,7/12/17,agitator,100 tshirt,yes,NA,3.4848,NA,4,19
+7/12/17,9x,7/12/17,agitator,50:50 tshirt,yes,NA,7.9435,NA,4,19
+7/12/17,9x,7/12/17,agitator,onesie,no,CL,1.2449,NA,4,19
+7/12/17,9x,7/12/17,agitator,workshirt,no,CL,5.0642,NA,4,19
+7/12/17,9x,7/12/17,agitator,jeans,no,CL,22.4547,NA,4,19
+7/12/17,9x,7/12/17,agitator,100 tshirt,no,CL,4.3744,NA,4,19
+7/12/17,9x,7/12/17,agitator,50:50 tshirt,no,CL,9.2451,NA,4,19
+7/12/17,9x,7/12/17,HE,onesie,no,UV,1.0612,NA,4,20
+7/12/17,9x,7/12/17,HE,workshirt,no,UV,4.4776,NA,4,20
+7/12/17,9x,7/12/17,HE,jeans,no,UV,19.9108,NA,4,20
+7/12/17,9x,7/12/17,HE,100 tshirt,no,UV,3.3456,NA,4,20
+7/12/17,9x,7/12/17,HE,50:50 tshirt,no,UV,2.1478,NA,4,20
+7/12/17,9x,7/12/17,HE,onesie,no,WND,0.7602,NA,4,20
+7/12/17,9x,7/12/17,HE,workshirt,no,WND,2.7409,NA,4,20
+7/12/17,9x,7/12/17,HE,jeans,no,WND,12.4453,NA,4,20
+7/12/17,9x,7/12/17,HE,100 tshirt,no,WND,2.1623,NA,4,20
+7/12/17,9x,7/12/17,HE,50:50 tshirt,no,WND,1.2346,NA,4,20
+7/12/17,9x,7/12/17,HE,onesie,yes,NA,1.8944,NA,4,20
+7/12/17,9x,7/12/17,HE,workshirt,yes,NA,5.9012,NA,4,20
+7/12/17,9x,7/12/17,HE,jeans,yes,NA,17.1665,NA,4,20
+7/12/17,9x,7/12/17,HE,100 tshirt,yes,NA,3.5478,NA,4,20
+7/12/17,9x,7/12/17,HE,50:50 tshirt,yes,NA,6.4883,NA,4,20
+7/12/17,9x,7/12/17,HE,onesie,no,CL,1.0909,NA,4,20
+7/12/17,9x,7/12/17,HE,workshirt,no,CL,5.1388,NA,4,20
+7/12/17,9x,7/12/17,HE,jeans,no,CL,18.7152,NA,4,20
+7/12/17,9x,7/12/17,HE,100 tshirt,no,CL,4.1279,NA,4,20
+7/12/17,9x,7/12/17,HE,50:50 tshirt,no,CL,6.0594,NA,4,20
+7/12/17,9x,7/13/17,none,workshirt,no,NA,54.5124,NA,4,24
+7/12/17,9x,7/13/17,none,jeans,no,NA,49.2706,NA,4,24
+7/12/17,9x,7/13/17,none,100 tshirt,no,NA,42.2789,NA,4,24
+7/12/17,9x,7/13/17,none,50:50 tshirt,no,NA,42.5567,NA,4,24
+7/12/17,9x,7/13/17,agitator,onesie,no,UV,1.5195,NA,4,22
+7/12/17,9x,7/13/17,agitator,workshirt,no,UV,9.7569,NA,4,22
+7/12/17,9x,7/13/17,agitator,jeans,no,UV,32.2099,NA,4,22
+7/12/17,9x,7/13/17,agitator,100 tshirt,no,UV,6.691,NA,4,22
+7/12/17,9x,7/13/17,agitator,50:50 tshirt,no,UV,7.8405,NA,4,22
+7/12/17,9x,7/13/17,agitator,onesie,no,WND,1.4708,NA,4,22
+7/12/17,9x,7/13/17,agitator,workshirt,no,WND,10.1746,NA,4,22
+7/12/17,9x,7/13/17,agitator,jeans,no,WND,27.5376,NA,4,22
+7/12/17,9x,7/13/17,agitator,100 tshirt,no,WND,7.0221,NA,4,22
+7/12/17,9x,7/13/17,agitator,50:50 tshirt,no,WND,7.909,NA,4,22
+7/12/17,9x,7/13/17,agitator,onesie,yes,NA,1.608,NA,4,22
+7/12/17,9x,7/13/17,agitator,workshirt,yes,NA,11.8047,NA,4,22
+7/12/17,9x,7/13/17,agitator,jeans,yes,NA,29.5645,NA,4,22
+7/12/17,9x,7/13/17,agitator,100 tshirt,yes,NA,6.1546,NA,4,22
+7/12/17,9x,7/13/17,agitator,50:50 tshirt,yes,NA,9.0292,NA,4,22
+7/12/17,9x,7/13/17,agitator,onesie,no,CL,1.4315,NA,4,22
+7/12/17,9x,7/13/17,agitator,workshirt,no,CL,10.7097,NA,4,22
+7/12/17,9x,7/13/17,agitator,jeans,no,CL,30.5514,NA,4,22
+7/12/17,9x,7/13/17,agitator,100 tshirt,no,CL,9.1167,NA,4,22
+7/12/17,9x,7/13/17,agitator,50:50 tshirt,no,CL,9.093,NA,4,22
+7/12/17,9x,7/13/17,HE,onesie,no,UV,1.0116,NA,4,23
+7/12/17,9x,7/13/17,HE,workshirt,no,UV,7.5995,NA,4,23
+7/12/17,9x,7/13/17,HE,jeans,no,UV,23.3322,NA,4,23
+7/12/17,9x,7/13/17,HE,100 tshirt,no,UV,5.1803,NA,4,23
+7/12/17,9x,7/13/17,HE,50:50 tshirt,no,UV,5.3607,NA,4,23
+7/12/17,9x,7/13/17,HE,onesie,no,WND,1.0272,NA,4,23
+7/12/17,9x,7/13/17,HE,workshirt,no,WND,6.5181,NA,4,23
+7/12/17,9x,7/13/17,HE,jeans,no,WND,25.301,NA,4,23
+7/12/17,9x,7/13/17,HE,100 tshirt,no,WND,5.032,NA,4,23
+7/12/17,9x,7/13/17,HE,50:50 tshirt,no,WND,5.52,NA,4,23
+7/12/17,9x,7/13/17,HE,onesie,yes,NA,2.0509,NA,4,23
+7/12/17,9x,7/13/17,HE,workshirt,yes,NA,6.8178,NA,4,23
+7/12/17,9x,7/13/17,HE,jeans,yes,NA,25.9312,NA,4,23
+7/12/17,9x,7/13/17,HE,100 tshirt,yes,NA,6.1328,NA,4,23
+7/12/17,9x,7/13/17,HE,50:50 tshirt,yes,NA,6.3486,NA,4,23
+7/12/17,9x,7/13/17,HE,onesie,no,CL,1.2715,NA,4,23
+7/12/17,9x,7/13/17,HE,workshirt,no,CL,12.094,NA,4,23
+7/12/17,9x,7/13/17,HE,jeans,no,CL,26.7602,NA,4,23
+7/12/17,9x,7/13/17,HE,100 tshirt,no,CL,5.609,NA,4,23
+7/12/17,9x,7/13/17,HE,50:50 tshirt,no,CL,7.1016,NA,4,23

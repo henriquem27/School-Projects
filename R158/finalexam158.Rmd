@@ -1,0 +1,242 @@
+---
+title: "FinalExam158"
+author: "Henrique"
+date: "May 6, 2019"
+output:
+  word_document: default
+  html_document: default
+---
+1)
+```{r}
+n <- 30
+coefs_age <- rep(0,1e4)
+coefs_age2 <- rep(0,1e4)
+for (i in 1:1e4) {
+ Age=round(runif(n,min=18,max=70))
+ Age2 <- Age^2
+ HR <- 94-Age*0.5+Age2*0.0035+rnorm(n,sd=10)
+ model <- lm(HR~Age+Age2)
+ coefs_age[i] <- summary(model)$coefficients[2,1]
+ coefs_age2[i] <- summary(model)$coefficients[3,1]
+
+}
+mean(coefs_age)
+mean(coefs_age2)
+summary(model)
+
+
+```
+a)mean of coefs_age is -0.50 and coefs_age2 is 0.004, its seems right as the summary of one of the instances of the model shows as coef for age being -.53 and for age2 to be -.005 which is pretty close to the mean.
+
+b)
+```{r}
+n <- 30
+ageee <- rep(0,1e4)
+HRrr <- rep(0,1e4)
+set.seed(104)
+for (i in 1:1e4) {
+ Age=round(runif(n,min=18,max=70))
+ Age2 <- Age^2
+ HR <- 94-Age*0.5+Age2*0.0035+rnorm(n,sd=10)
+ model <- lm(HR~Age+Age2)
+#ageee[i]<- mean(Age)
+#HRrr[i]<- mean(HR)
+
+}
+plot(Age,HR, xlab='Age', ylab = 'Heart Rate', main = 'Heart Rate vs Age', cex=0.9)
+
+```
+c)
+```{r}
+n <- 30
+p1 <- rep(0,1e4)
+p2 <- rep(0,1e4)
+for (i in 1:1e4) {
+ Age=round(runif(n,min=18,max=70))
+ Age2 <- Age^2
+ HR <- 94-Age*0.5+Age2*0.0035+rnorm(n,sd=10)
+ model <- lm(HR~Age+Age2)
+ p1[i] <- summary(model)$coefficients[2,4]
+ p2[i] <- summary(model)$coefficients[3,4]
+}
+sum(p1<0.05)/length(p1)
+sum(p2<0.05)/length(p2)
+
+```
+Power of age is 0.09  and the power of age^2 is 0.06
+
+d)
+```{r}
+n <- 30
+p1 <- rep(0,1e4)
+for (i in 1:1e4) {
+ Age=round(runif(n,min=18,max=70))
+ Age2 <- Age^2
+ HR <- 94-Age*0.5+Age*0.0035+rnorm(n,sd=10)
+ model <- lm(HR~Age)
+ p1[i] <- summary(model)$coefficients[2,4]
+}
+sum(p1<0.05)/length(p1)
+summary(model)
+
+```
+It increased the power by a lot which would mean that the relation between HR and age it is not quadratic.
+
+
+
+
+2)a)
+```{r}
+
+h1 <- rgamma(10000, shape = 0.5)
+h2 <- rgamma(10000, shape =0.1)
+h3 <- rgamma(10000, shape =0.05)
+
+hist(h1,breaks=100)
+hist(h2,breaks=100)
+hist(h3,breaks=100)
+
+
+
+```
+As shape gets smaller the histogram gets more skewed to the right.
+
+b)
+```{r}
+
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(30, shape = 1)
+sim1 <- rgamma(30, shape = 1)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+  
+```
+c)
+```{r}
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(30, shape = 0.5)
+sim1 <- rgamma(30, shape = 0.5)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(30, shape = 0.1)
+sim1 <- rgamma(30, shape = 0.1)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+```
+the distribution is less normal as the shape decreases, also as the shape gets smaller the proportion of pvalues under 0.05 also gets smaller.
+
+
+```{r}
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(10, shape = 1)
+sim1 <- rgamma(10, shape = 1)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(10, shape = 0.5)
+sim1 <- rgamma(10, shape = 0.5)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+tstat <- rep(1e4)
+pvav <- rep(1e4)
+
+for (i in 1:1e4) {
+sim <- rgamma(10, shape = 0.1)
+sim1 <- rgamma(10, shape = 0.1)
+
+t <- t.test(sim,sim1)
+tstat[i] <- t$statistic
+pvav[i] <- t$p.value
+}
+hist(tstat)
+sum(pvav<0.05)/length(pvav)
+```
+yes, as the shape and the n go down the distribution of the mean is less and less normal.
+
+
+
+
+
+
+3a)
+```{r}
+ferret = read.csv("Ferret_Vaccine.csv", header = TRUE)
+attach(ferret)
+mean(Temperature)
+sd(Temperature)
+
+mean(Weight)
+sd(Weight)
+
+detach(ferret)
+
+```
+Temperature mean = 101.7395
+Temperature SD= 0.9505654
+Weight mean = 1145.234
+Weight SD = 148.4198
+
+
+b)
+```{r}
+attach(ferret)
+
+plot(Day[Ferret.ID==574],Temperature[Ferret.ID==574],type="l",xlab='Day',ylab = 'Temperature', ylim=c(100,105))
+lines(Day[Ferret.ID==546],Temperature[Ferret.ID==546],lty = 2)
+lines(Day[Ferret.ID==548],Temperature[Ferret.ID==548], lty = 3)
+
+detach(ferret)
+```
+
+b)
+```{r}
+
+```
+
+
+
+
+
+

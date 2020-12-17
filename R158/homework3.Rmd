@@ -1,0 +1,90 @@
+---
+title: "HWK3"
+author: "Henrique"
+date: "February 15, 2019"
+output: word_document
+---
+
+question 1.
+```{r}
+sample1 <- rnorm(10,0,1)
+sample1
+mean(sample1)
+sd(sample1)
+sample2 <- rnorm(10,100,1)
+sample2
+mean(sample2)
+sd(sample2)
+
+sample3 <- rnorm(10,1000,10)
+sample3
+sd(sample3)
+mean(sample3)
+
+
+```
+Question 2
+
+```{r}
+coin <- c("Head","Tail")
+
+
+sample(coin,size = 20, replace=TRUE)
+
+```
+
+question 3
+```{r}
+set.seed(158)
+coin <- c("Head","Tail")
+
+
+sample(coin,size = 20, replace=TRUE)
+
+```
+
+question 4 a/b/c
+```{r}
+x <- runif(20,min = -10, max = 10)
+
+b0 = 75
+b1 = 2
+b2 = 0.5
+b3 = 0.1
+
+y=b0 +(b0*x)+(b1*x)+(b2*x*x)+(b3*x*x*x)
+
+plot(x,y)
+
+
+
+```
+
+question 4 d
+```{r}
+
+noise <- rnorm(20,0,5)
+plot (x,noise)
+
+
+```
+I looks random, and without any correlation between the points.
+
+Question 4 e
+```{r}
+noise2 <- rnorm(20,0,50)
+plot (x,noise2)
+
+
+```
+It has a lot more space between the points.
+
+question 4 f
+```{r}
+compare <- cbind(y,noise,noise2)
+compare
+```
+they have no linear relation and are a lot smaller in comparison to the y vaulues.
+
+
+

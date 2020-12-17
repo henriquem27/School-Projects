@@ -1,0 +1,211 @@
+---
+title: 'Homework #10'
+author: "Henrique Magalhaes Rio"
+date: "11/14/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+```
+
+# Question 1 
+
+```{r, include=FALSE}
+
+hou <-read.csv("housing_prices_CO.csv")
+
+```
+
+## Part 1 (a)
+
+```{r, include=FALSE}
+houlm <- lm(price_psf~pop_density+pov+med_hh_income, data= hou)
+tidy(houlm,conf.int = TRUE)
+```
+
+$\beta_0= 318$ 95%CI= (211,426)
+
+$\beta_1= 26$ 95%CI= (5.96,46.02)
+
+$\beta_2= -5.83$ 95%CI= (-10.24,-1.42)
+
+$\beta_3= 0.042$ 95%CI= (-1.10,1.19)
+
+
+## Part 2 (b)
+
+We fail to reject the null hypothesis that there is no relationship between price per square foot and median household income, when adjusting for population density and percent of families living below poverty level. (95%CI= (-1.10,1.19), p-value=0.94)
+
+
+## Part 3 (c)
+
+
+```{r, echo=FALSE}
+
+ggplot() + theme_bw()+ geom_point(aes(x=fitted(houlm),y=rstandard(houlm))) + geom_hline(yintercept = 0,col="red") + xlab("Fitted Values") + ylab("Standardized Residuals") + ggtitle("Housing Prices Model") + geom_smooth(aes(x=fitted(houlm),y=rstandard(houlm)),method = "loess")
+
+
+```
+
+
+
+## Part 4 (d)
+
+Yes it violates the constant variance assumption as towards the middle of the graph the points are a lot more spread out than in the corners of the graphs.
+
+
+# Question 2
+
+```{r,include=FALSE}
+
+bc <-read.csv("british_crime_study.csv")
+
+```
+
+
+## Part 1 (a)
+
+
+```{r, include=FALSE}
+
+bclm <- lm(conf_police~eff_justice, data = bc)
+
+```
+
+$\hat{Y}=-0.07+0.48x$
+
+
+
+## Part 2 (b)
+
+
+```{r, echo=FALSE}
+
+ggplot() + theme_bw()+ geom_point(aes(x=fitted(bclm),y=rstandard(bclm))) + geom_hline(yintercept = 0,col="red") + xlab("Fitted Values") + ylab("Standardized Residuals") + ggtitle("British Crime Study Model") + geom_smooth(aes(x=fitted(bclm),y=rstandard(bclm)),method = "loess")
+
+
+```
+
+
+
+## Part 3 (c)
+
+
+The plot shows a violation of the non-constant variance assumption, due to is cone shape where at the lower fitted values there is more variance then the higher fitted values.
+
+
+## Part 4 (d)
+
+```{r, include=FALSE}
+
+bclm2 <- lm(conf_police~worry_pers_crime, data = bc)
+
+```
+
+
+$\hat{Y}=-0.1-0.02x$
+
+
+## Part 5 (e)
+```{r, echo=FALSE}
+
+ggplot() + theme_bw()+ geom_point(aes(x=fitted(bclm2),y=rstandard(bclm2))) + geom_hline(yintercept = 0,col="red") + xlab("Fitted Values") + ylab("Standardized Residuals") + ggtitle("British Crime Study Model 2") + geom_smooth(aes(x=fitted(bclm2),y=rstandard(bclm2)),method = "loess")
+
+
+```
+
+
+## Part 6 (f)
+
+There are no violations, even though there is a lot of variance it is spread out evenly.
+
+# Question 3
+
+
+## Part 1 (a)
+
+```{r, echo=FALSE}
+sw <-read.csv("starwars.csv")
+
+ggplot(sw) + theme_bw()+ geom_point(aes(x=height,y=mass))+ ggtitle("Mass and Height of starwars characters") +xlab("Height (cm)") + ylab("Mass (Kg)")
+
+```
+
+
+## Part 2 (b)
+
+Ratts Tyerell - height=79 - mass=15
+Yoda - height=66 - mass=17
+
+
+
+
+## Part 3 (c)
+
+Jabba Desilijic Tiure	- height=175	mass=1358.0
+
+
+## Part 4 (d)
+
+
+
+```{r,include=FALSE}
+swlm <- lm(mass~height, data =sw)
+
+```
+
+A one unit difference in height results in a estimated average difference of 0.641 in mass. 95% CI=(-.623,1.91)
+
+
+## Part 5 (e)
+
+```{r,include=FALSE}
+round(dfbetas(swlm), 3)
+
+```
+
+
+Jabba Desilijic Tiure	- DFBETAS=0.264
+Ratts Tyerell - DFBETAS = 0.053
+Yoda - DFBETAS = 0.034
+
+
+Yes, Jabba's has a high influence on the height coefficient.
+
+
+## Part 6 (f)
+
+
+Jabba Desilijic Tiure	- DFBETAS= 1.525
+Ratts Tyerell - DFBETAS = -0.056
+Yoda - DFBETAS = -0.035
+
+
+Yes, Jabba's has a very high influence on the height coefficient.
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

@@ -1,0 +1,138 @@
+---
+title: "Exam 1"
+author: "Henrique"
+date: "March 11, 2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+Question 1.a)
+```{r}
+
+getwd()
+Stat_class_data = read.csv("Stat_class_data.csv", header = TRUE)
+
+
+```
+
+The columms are sex with m and f as paramaters,color with a string with color name, Height with a integer number and number with a a numerical number assigned.
+
+
+Question 1.b)
+```{r}
+attach(Stat_class_data)
+
+sum(Sex=="M")
+sum(Sex=="F")
+
+
+
+
+
+```
+There are 60 males and 73 females.
+
+Questin 1.c)
+```{r}
+attach(Stat_class_data)
+table(Color)
+detach(Stat_class_data)
+```
+Top colours:
+1-Blue
+2-Green
+3-Purple
+
+Question 1.d)
+```{r}
+attach(Stat_class_data)
+summary(Height)
+detach(Stat_class_data)
+```
+Median height = 68.00
+
+Question 1.e)
+```{r}
+attach(Stat_class_data)
+plot(Number)
+detach(Stat_class_data)
+```
+numbers is quite randomized.
+
+QUestion 1.f)
+```{r}
+attach(Stat_class_data)
+sum(Number>5000)
+detach(Stat_class_data)
+
+```
+there are 7 numbers above 5000, which is about 5% of the students.
+
+question 1.g)
+```{r}
+NEX <- Number[c(-77,-127)]
+
+mean(NEX)
+mean(Number)
+
+```
+
+Mean  number without 77 and 127: 841.4564
+Mean of number: 1,263,612
+
+Question 2
+```{r}
+
+x <- seq(-3,3,0.1)
+
+b1=1/sqrt(2*pi)
+
+b2=-((x/2)^2)
+
+y = b1*exp(b2)
+
+
+plot(x,y)
+
+
+
+
+
+```
+Question 3.a)
+```{r}
+
+r1 <- sample(1:100,1000, replace = TRUE, pro = NULL)
+
+hist(r1)
+
+```
+Question 3.b)
+```{r}
+r2 <- rnorm(1000,10,2)
+
+hist(r2)
+
+
+```
+
+Question 3.c)
+```{r}
+r12 <- c(r1,r2)
+
+hist(r12)
+
+
+```
+Question 3.d)
+```{r}
+r1plus2 <- c(r2+r1)
+
+hist(r1plus2)
+```
+question 3.e)
+
+they are different because when when the values are combined they skew the normal distribution to the left, and when they are added they just randomize, so there is no patterm.
+
+
+

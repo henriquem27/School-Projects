@@ -1,0 +1,132 @@
+---
+title: 'Homework #2'
+author: "Henrique Magalhaes Rio"
+date: "9/4/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+```
+
+
+# Question 1
+
+Designed studies are much better at predicting as they are not subject to bias of an observational studie.
+
+
+
+# Question 2
+
+## Part 1 (a)
+it comes from cars from the years 19
+
+## Part 2 (b)
+```{r, echo=FALSE, include=FALSE}
+summarize(mpg, mean(hwy))
+```
+the mean on the highway is 23.4 mpg
+
+## Part 3 (c)
+```{r, include=FALSE, echo=FALSE}
+
+
+mpg %>%
+    group_by(drv) %>%
+    summarize(n=n()) %>%
+    mutate(freq = n / sum(n))
+
+
+
+```
+
+there are 103 4 wheel drive vehicles, 106 front wheel drive vehicles and 25 rear wheel drive vehicles.
+
+
+## Part 4 (d)
+
+```{r, include=FALSE,echo=FALSE}
+
+mpg %>%
+  group_by(drv) %>%
+  summarize(mean_mpg=mean(hwy))
+  
+
+```
+The mean for 4 wheel drive cars is 19.17, for front wheel drive 28.16038 and rear wheel drive 21.000.
+
+# Question 3
+
+## Part 1 (a)
+```{r, echo=FALSE}
+ggplot() + geom_point(aes(x=displ,y=hwy, col=drv),data=mpg) + xlab("Engine Displacement") + ylab("Highway miles per gallon")
+```
+  
+## Part 2 (b)
+  
+```{r, echo=FALSE}
+ggplot() + geom_point(aes(x=displ,y=hwy, col=class),data=mpg) + xlab("Engine Displacement") + ylab("Highway miles per gallon")
+```
+
+## Part 3 (c)
+
+```{r, echo=FALSE}
+ggplot() + geom_point(aes(x=displ,y=hwy, col=class),data=mpg) + xlab("Engine Displacement") + ylab("Highway miles per gallon")+xlim(c(0,10))
+```
+
+# Question 4
+
+## Part 1 (a)
+```{r, echo=FALSE}
+ggplot(mpg) + geom_histogram(aes(x=cty))+xlab("City miles per gallon")
+
+```
+
+## Part 2 (b)
+```{r, echo= FALSE}
+ggplot(mpg) + geom_density(aes(x=cty))+xlab("City miles per gallon")
+
+```
+
+## Part 3 (c)
+```{r, echo= FALSE}
+ggplot(mpg) + geom_density(aes(x=cty,y=stat(count)))+xlab("City miles per gallon")
+
+```
+## Part 4 (d)
+```{r, echo= FALSE}
+ggplot(mpg) + geom_density(aes(x=cty,y=stat(count)))+geom_histogram(aes(x=cty))+xlab("City miles per gallon")
+
+```
+
+# Question 5
+
+## Part 1 (a)
+$E[3X]= 15$
+
+## Part 2 (b)
+$E[2X + 4Y -5] = 21$
+
+## Part 3 (c)
+$Var(2Y-3)= 4$
+
+## Part 4 (d)
+$Var[2X + 4Y] = 20$
+
+# Question 6
+
+$Y_i = \beta_0 + \beta_1x_i$
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

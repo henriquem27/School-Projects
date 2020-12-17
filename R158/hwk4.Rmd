@@ -1,0 +1,93 @@
+---
+title: "HWK4"
+author: "Henrique"
+date: "March 1, 2019"
+output: word_document
+---
+question 1
+```{r}
+attach(iris)
+
+plot(Petal.Width,Petal.Length,col=c("red","blue","green"),pch=c(17,22,10),xlab = "Width of the petal",ylab= "Length of the petal", title(main ="Width vs Length of a petal"))
+
+detach(iris)
+```
+
+
+
+
+
+
+
+
+Question 2
+```{r}
+a <- rnorm(10,0,10)
+b <- rnorm(20,40,100)
+c <- rnorm(15,20,50)
+
+boxplot(a,b,c, col = c("gray14","gray23","gray54"), names = c("Mean=0 sd= 10","Mean=40 sd=100","Mean= 20 sd=50"), bty='n')
+
+
+```
+
+Question 3a)
+```{r}
+sample_size <- 30
+sds <- rep(0,10e4)
+for (i in 1:length(sds)){
+  temp_sample <- runif(n=sample_size,min=100, max=300)
+  sds[i] <- sd(temp_sample)
+}
+hist(sds)
+
+
+```
+
+Question 3b)
+
+```{r}
+sample_size <- 50
+sds2 <- rep(0,10e4)
+for (i in 1:length(sds2)){
+  temp_sample <- runif(n=sample_size,min=100, max=300)
+  sds2[i] <- sd(temp_sample)
+}
+hist(sds2)
+```
+question 3c)
+
+```{r}
+sample_size <- 30
+sds3 <- rep(0,10e4)
+for (i in 1:length(sds3)){
+  temp_sample <- runif(n=sample_size,min=100, max=500)
+  sds3[i] <- sd(temp_sample)
+}
+hist(sds3)
+```
+
+question 3d)
+
+```{r}
+hist(sds,ylim = c(0,30000), xlim = c(0,140))
+hist(sds2,ylim = c(0,30000),xlim = c(0,140))
+hist(sds3,ylim = c(0,30000),xlim =c(0,140))
+
+
+
+```
+When the sample size is increased it makes the variation of the standard deviation smaller, changin the max value moves the graph of the standard deviation to the right due to the increase in its variation.
+
+
+Question 4
+
+```{r}
+  sample_size <- 30
+lns <- rep(0,30)
+for (i in 1:length(lns)){
+  temp_sample <- rnorm(30,0,10)
+  lns[i] <- log(temp_sample)
+}
+hist(lns)
+```

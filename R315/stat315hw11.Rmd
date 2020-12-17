@@ -1,0 +1,69 @@
+---
+title: "HW11-315"
+author: "Henrique"
+date: "May 1, 2019"
+output: word_document
+---
+```{r}
+require(Sleuth3)
+require(mosaic)
+```
+
+6)
+```{r}
+head(case0701)
+```
+7)
+```{r}
+dim(case0701)
+```
+8)
+```{r}
+summary(case0701)
+```
+9)
+```{r}
+histogram(~ Velocity, type="density", density=TRUE, nint=10, data=case0701)
+histogram(~ Distance, type="density", density=TRUE, nint=10, data=case0701)
+
+```
+10)
+```{r}
+xyplot(Distance ~ Velocity, type=c("p", "r"), data=case0701)
+
+```
+
+11)
+```{r}
+mylm = lm(Distance ~ Velocity, data=case0701)
+summary(mylm)
+fitted(mylm)
+resid(mylm)^2
+
+```
+
+12)
+```{r}
+sum(resid(mylm)^2)
+sum(resid(mylm)^2)/sum((fitted(mylm)-mean(~Distance, data=case0701))^2)
+
+```
+
+13)
+```{r}
+xyplot(Distance ~ Velocity, panel=panel.lmbands, data=case0701)
+
+```
+14)
+```{r}
+summary(mylm)
+# linear regression with no intercept
+mylm2 = lm(Distance ~ Velocity-1, data=case0701)
+summary(mylm2)
+```
+
+15)
+```{r}
+confint(mylm2)
+```
+

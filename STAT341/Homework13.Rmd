@@ -1,0 +1,36 @@
+---
+title: 'Homework #13'
+author: "Henrique Magalhaes Rio"
+date: "12/11/2019"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# Insert packages you need here
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+library(caret)
+
+```
+
+# Question 1 
+
+In binary outcomes 
+
+
+
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+
+```

@@ -1,0 +1,53 @@
+---
+title: "HW12"
+author: "Henrique"
+date: "May 7, 2019"
+output: html_document
+---
+
+```{r}
+head(case1201)
+```
+
+```{r}
+pairs(~Takers + Rank + Years + Income + Public + Expend + SAT, data = case1201)
+```
+Model 1 and 2
+```{r}
+lm1 <- lm(SAT ~ Takers, data = case1201) # just on Takers
+lm2 <- lm(SAT ~ log(Takers), data = case1201) # on log(Takers)
+summary(lm1)
+summary(lm2)
+plot(lm1)
+plot(lm2)
+```
+Q1) log of takers, is better at predicting due to it straighter residuals vs fitteed line.
+
+
+
+```{r}
+lm3 <- lm(SAT~Income, data = case1201)
+summary(lm3)
+lm4 <- lm(SAT~Expend, data = case1201)
+summary(lm4)
+
+
+
+```
+
+Q4)
+```{r}
+lm.inter <- lm(SAT ~ Income*Expend, data = case1201)
+summary(lm.inter)
+plot(lm.inter)
+```
+Q5)
+```{r}
+lm5 <- lm(SAT ~ log(Takers) + Income + Years + Public + Expend + Rank, data = case1201)
+summary(lm5)
+```
+```{r}
+lm6 <-lm(SAT ~ log(Takers) + Years + Expend, data = case1201)
+summary(lm6)
+```
+

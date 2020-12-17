@@ -1,0 +1,207 @@
+---
+title: "HW2"
+author: "Henrique Magalhaes Rio"
+output:
+  word_document: default
+  pdf_document: default
+header-includes:
+- \usepackage{xcolor}
+- \usepackage{framed}
+---
+<!-- STUDENTS: change the "title" and "author above"
+DO NOT EDIT THE SECTION BELOW -->
+\colorlet{shadecolor}{gray!10}
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(broom)
+library(splines)
+library(caret)
+library(Matrix)
+library(MASS)
+library(emmeans)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 4, fig.height = 4, tidy = TRUE)
+```
+\newcommand{\answerstart}{ \colorlet{shadecolor}{orange!20}
+\begin{shaded} }
+\newcommand{\answerend}{  \end{shaded} \colorlet{shadecolor}{gray!10}}
+<!-- STUDENTS: DO NOT EDIT THE SECTION ABOVE 
+start here, insert homework below -->
+
+# Question 1
+
+It means even though thought the nominal coverage is 95%, the coverage of pairwise comparisons would be higher then that when adjusted for which means that the confidence interval is more coservative.
+
+
+# Question 2
+
+## Part 1(A)
+
+```{r,echo=FALSE}
+
+#Q2A
+ox <- read_csv("oxygen.csv")
+
+
+d <- as.factor(ox$distance)
+
+ox = ox %>%  mutate(
+  oxy2=sqrt(ox$oxygen+.0375)
+)
+
+
+ggplot(data = ox, aes(x = d, y =oxy2)) + geom_boxplot(fill = "gray") + 
+    labs(title = "Concentration of Oxygen by distance ", x = "Distance", y = "Oxygen (mg/L)") + 
+    theme_classic()
+
+
+
+
+
+
+```
+
+
+## Part 2 (B)
+
+```{r}
+lmout <- lm(ox$oxy2 ~ d)
+anova(lmout)
+```
+
+
+## Part 3 (C)
+
+```{r,echo=FALSE}
+
+plot(lmout)
+
+```
+
+
+# Question 3
+
+
+## Part 1 (A)
+| CPPU  | GA3  |  Control | ABBA|   |
+|---|---|---|---|---|
+| 102.70  | 95.57  |  94.15 |  90.72 |   |
+
+
+
+
+## Part 2 (B)
+
+
+$H_0:\mu_i=\mu_{ctrl}$
+
+$H_a:\mu_i\neq\mu_{ctrl}$
+
+## Part 3 (C)
+
+Tukey's method compares every mean to every other mean, Dunnet's method compares every mean to a control mean.
+
+
+
+
+
+
+
+
+# Question 4
+
+
+
+## PArt 1 (A)
+```{r,echo=FALSE}
+#Q4a
+bat <- read.csv("BatteryData.csv")
+
+ggplot(bat, aes(x=treatment, y=life, shape=temp, color=temp)) +
+  geom_point()
+
+
+
+```
+
+
+
+## Part 2 (B)
+
+```{r,echo=FALSE}
+#Q4b
+trt <- as.factor(bat$treatment)
+bat2<-cbind(bat,trt)
+lmbat <- lm(bat2$life~bat2$trt)
+
+anova(lmbat)
+```
+ 
+## Part 3 (C)
+
+
+```{r,echo=FALSE}
+#Q4c
+lmeans <-lsmeans(lmbat,specs="trt")
+pairs(lmeans)
+
+
+```
+
+
+treatments 1-2 do not show evidence of difference (P-value=0.41), however, all the others show evidence of a difference between each other.
+
+
+
+## Part 4 (D)
+
+
+```{r,echo=FALSE}
+#Q4d
+l1=c(-1/2,-1/2,+1/2,+1/2)
+
+contrast(lmeans,list(l1))
+```
+
+We can conclude the that there is a estimated difference of 4.59 between hot and cold treatments.(P-value<.0001)
+
+
+
+
+## Part 5 (E)
+
+```{r}
+#Q4e
+l2=c(1/2,-1/2,-1/2,+1/2)
+
+contrast(lmeans,list(l2))
+```
+
+We can conclude the that there is a estimated negative difference of 1.23 between material 1 and material 2.(P-value=0.0032)
+
+
+
+## Part 6 (F)
+```{r}
+#Q4f
+sum(l1*l2)
+```
+
+Yes since the sum is 0.
+ 
+
+
+
+
+
+
+
+# Appendix
+
+```{r show-code, ref.label = all_labels(),  echo = TRUE, eval = FALSE}
+
+```
+
