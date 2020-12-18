@@ -1,0 +1,545 @@
+\documentclass[12pt]{amsbook}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage[pdfpagelabels,hyperindex=false]{hyperref}
+
+
+%%%%\usepackage{amsmidx}
+\usepackage{appendix}
+\usepackage{booktabs}
+\usepackage[normalem]{ulem}
+%%%%\makeindex{LABdriver6}
+\usepackage[lastexercise]{exercise}
+
+\newcommand{\xxj}{x^{(j)}}  
+
+\newcommand{\xxi}{x^{(i)}}  
+\newcommand{\bp}{\mathbb{P}}  
+\newcommand{\br}{\mathbb{R}} 
+ \newcommand{\brm}{\mathbb{R}^m} 
+ \newcommand{\brn}{\mathbb{R}^n} 
+ \newcommand{\bbrm}{$\mathbb{R}^m\,$} 
+ \newcommand{\bbrn}{$\mathbb{R}^n\,$} 
+
+\newcommand{\calr}{\mathcal{R}}  
+\newcommand{\caln}{\mathcal{N}}  
+
+
+\numberwithin{equation}{section}
+% We'll use the equation counter for all our theorem environments, so
+% that everything will be numbered in the same sequence.
+%       Theorem environments
+\theoremstyle{plain} %% This is the default, anyway
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lem}[equation]{Lemma}
+\newtheorem{prop}[equation]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{Property}[equation]{Property}
+\theoremstyle{remark}
+\newtheorem{rem}[equation]{Remark}
+\newtheorem{ex}[equation]{Example}
+\newtheorem{notation}[equation]{Notation}
+\newtheorem{terminology}[equation]{Terminology}
+
+%\includeonly{LinearSystems,Exercises}
+%\includeonly{Exercises}
+
+%\includeonly{Eigenvectors,Exercises}
+%\includeonly{Eigenvectors}
+%\includeonly{PS8}
+
+%\includeonly{GeometrySubspacestex}
+
+
+%\usepackage{makeidx}
+%\usepackage{robustindex}
+
+\makeindex
+ 
+
+\begin{document}
+
+\section*{Exercises for Chapter 1}
+
+\begin{Exercise}
+%\begin{Exercise}[title={Computing an inverse}, difficulty = 0, label = rank1sum]
+Let $A, B, C$ be given by
+\begin{align*}
+A =  \left[ 
+\begin{array}{ccc} 
+1& 1&  3\\ \noalign{\medskip}   
+0& 1&  3\\ \noalign{\medskip}         
+1& 2   & 2 
+\end{array}
+ \right],\,\,\, B =  \left[ 
+\begin{array}{rrr} 
+2& 0&  -1\\ \noalign{\medskip}   
+0& 1&  3\\ \noalign{\medskip}         
+0& 1   & -2 
+\end{array}
+ \right],\,\,\,
+ C=  \left[ 
+\begin{array}{rr} 
+0& 1\\ \noalign{\medskip}   
+1& 1\\ \noalign{\medskip}         
+-1& -1   
+\end{array}
+ \right] ,\,\,\,
+ D=  \left[ 
+\begin{array}{rrr} 
+0& 1 & 3\\ \noalign{\medskip}          
+-1& -1   &-1
+\end{array}
+ \right] 
+\end{align*}
+%\end{Exercise}
+For each problem find $X$ if possble.  If X doesn't exist say why.
+\begin{itemize}
+\item[a)]$X =  2A+3B$
+\item[b)]$ X =7A + 2C$
+\item[c)]$X =  BC$
+\item[d)] $X = CB$
+\item[e)]$ X = (A+2B)C$
+\item[f)] Without actually computing the product, what is the size of the matrix $X = DC$
+\end{itemize}
+
+\end{Exercise}
+
+
+\begin{Exercise}
+Show that in general $AB \ne BA $ where  $A$ and $B$ are square.  It is sufficient to provide a single counter example for $A, B \in \mathbb{R}^{2 \times 2}$.
+\end{Exercise}
+
+
+
+\begin{Exercise}
+%
+%\begin{Exercise}[title={Computing an inverse}, difficulty = 0, label = rank1sum]
+Let $A, b, x$ be given by
+\begin{align*}
+A =  \left[ 
+\begin{array}{rr} 
+1& 1\\ \noalign{\medskip}            
+1& 2   
+\end{array}
+ \right],\,\,\, b =  \left[ 
+\begin{array}{r} 
+0\\ \noalign{\medskip}   
+1 
+\end{array}
+ \right],\,\,\,
+ x=  \left[ 
+\begin{array}{r} 
+x_1\\ \noalign{\medskip}   
+x_2
+\end{array}
+ \right] 
+\end{align*}
+%\end{Exercise}
+Write $$Ax=b$$ 
+as a system of linear equations without matrix notation.
+\end{Exercise}
+
+\begin{Exercise}
+%\begin{Exercise}[title={Computing an inverse}, difficulty = 0, label = rank1sum]
+Let $A, b, x$ be given by
+\begin{align*}
+A =  \left[ 
+\begin{array}{rrrr} 
+1& 1& 0& 3\\ \noalign{\medskip}   
+0& 1&  0&3\\ \noalign{\medskip}         
+1& 2   &-1& 2 
+\end{array}
+ \right],\,\,\, b =  \left[ 
+\begin{array}{r} 
+2\\ \noalign{\medskip}   
+-1\\ \noalign{\medskip}         
+1 
+\end{array}
+ \right],\,\,\,
+ x=  \left[ 
+\begin{array}{r} 
+x_1\\ \noalign{\medskip}   
+x_2\\ \noalign{\medskip} 
+x_3\\ \noalign{\medskip}                 
+x_4   
+\end{array}
+ \right] 
+\end{align*}
+%\end{Exercise}
+Write $$Ax=b$$ 
+as a system of linear equations without matrix notation.
+\end{Exercise}
+
+
+\begin{Exercise}
+Write the linear system
+$$2x_1+x_2 = 7$$
+$$3x_1-x_2 = 2$$
+in the form $$Ax=b$$
+What  are $A, b, x$?
+\end{Exercise}
+
+\begin{Exercise}
+Write the linear system
+$$5x_1-4x_2 = 1$$
+$$3x_1+5x_2 = 2$$
+$$6x_1-4x_2 = 8$$
+$$7x_1+6x_2 = 2$$
+$$2x_1-4x_2 = 9$$
+$$8x_1+9x_2 = 2$$
+in the form $$Ax=b$$
+What are $A, b, x$?
+\end{Exercise}
+
+\begin{Exercise}
+Let $A, B, C \in \mathbb{R}^{m \times n}$.
+Provide a mathmatical proof of the associative law of addition for matrices, i.e., 
+$$(A+B)+C = A+(B+C)$$  
+Hint: you may use the fact that $(a+b)+c = a +(b+c) $ where $a, b, c$ are real
+numbers.  Identify the $(i,j)$ component of the resulting matrix on each side of the equation
+and show they are equal.
+\end{Exercise}
+
+\begin{Exercise}
+The transpose of a matrix $A \in \mathbb{R}^{m\times n}$ (possibly not square) is the new matrix
+$$X_{ij} = A_{ji}$$   The standard notation for this is $$X  = A^T$$  Given the matrices as defined in
+Problem 1 find
+\begin{itemize}
+\item[a)] $A^T$
+\item[b)] $B^T$
+\item[c)] $C^T$
+\item[d)] $D^T$
+\end{itemize}
+\end{Exercise}
+\begin{Exercise}
+The matrix $A$ is said to be symmetric if $A = A^T$.
+\begin{itemize}
+\item[a)] Construct an example of a symmetric matrix.
+\item[b)] Can a matrix be symmetric if it is not square?
+\item[c)] What is the plural of the word matrix?
+\end{itemize}
+\end{Exercise}
+
+\begin{Exercise}
+\begin{itemize}
+\item[a)] Find the $(i,j)$ entry of the matrix
+$AB$.
+\item[b)] Find the $(i,j)$ entry of the matrix $(AB)^T$.
+\item[c)] Find the $(i,j)$ entry of the matrix product $B^TA^T$.
+\item[d)] Hence justify the equation
+$(AB)^T = B^TA^T$
+\item[e)] Is the matrix $XX^T$ symmetric?
+\end{itemize}
+\end{Exercise}
+
+
+\bigskip
+
+\begin{Exercise}[title={Scalar product}, difficulty = 0, label = exmm]
+	Compute the scalar (or dot) product of the vectors
+	$$u =  \left[ \begin {array}{c} 
+	9 \\ \noalign{\medskip}       
+	2 \\ \noalign{\medskip}        
+	-1\end {array}
+	\right], \quad v=
+	\left[ \begin {array}{cccc} 
+	0  \\ \noalign{\medskip}       
+	2  \\ \noalign{\medskip}        
+	1 \end {array}
+	\right] 
+	$$
+\end{Exercise}
+
+\bigskip
+
+\begin{Exercise}[title={2-norm of a vector}, difficulty = 0, label = exmm]
+\Question 	Let 
+	$$ x =  \left[ \begin {array}{c} 
+	3 \\ \noalign{\medskip}       
+	4 \\ \noalign{\medskip}    
+	    	-7 \\ \noalign{\medskip}        
+	8\end {array}
+	\right] 
+	$$
+	Find the 2-norm $\| x \|_2$.
+	\Question 	Let 
+	$$ x =  \left[ \begin {array}{c} 
+	1 \\ \noalign{\medskip}       
+	1 \\ \noalign{\medskip}           
+	1\end {array}
+	\right] 
+	$$
+	Find the 2-norm $\| x \|_2$.
+
+	\Question 	Let 
+	$$ x =  \left[ \begin {array}{c} 
+	1/ \sqrt{3} \\ \noalign{\medskip}       
+	1/ \sqrt{3}\\ \noalign{\medskip}           
+1/ \sqrt{3}\end {array}
+	\right] 
+	$$
+	Find the 2-norm $\| x \|_2$.
+
+	
+\end{Exercise}
+
+
+\bigskip
+
+\begin{Exercise}[title={Angle between vectors}, difficulty = 0, label = exmm]
+\Question	Compute the angle between the vectors
+	$$u =  \left[ \begin {array}{c} 
+	1 \\ \noalign{\medskip}       
+	2 \\ \noalign{\medskip} 
+	8 \\ \noalign{\medskip}        
+	-1\end {array}
+	\right], \quad v=
+	\left[ \begin {array}{cccc} 
+	-1  \\ \noalign{\medskip} 
+    2 \\ \noalign{\medskip}              
+	-1  \\ \noalign{\medskip}        
+	3 \end {array}
+	\right] 
+	$$
+	providing your answer in both radians and degrees.
+\Question
+Compute the angle between the vectors
+$$u =  \left[ \begin {array}{c} 
+1 \\ \noalign{\medskip}       
+2 \\ \noalign{\medskip}       
+0\end {array}
+\right], \quad v=
+\left[ \begin {array}{cccc} 
+0 \\ \noalign{\medskip}             
+0  \\ \noalign{\medskip}        
+3 \end {array}
+\right] 
+$$
+providing your answer in both radians and degrees.
+
+\Question
+Compute the angle between the vectors
+$$u =  \left[ \begin {array}{c} 
+1 \\ \noalign{\medskip}       
+2 \\ \noalign{\medskip}       
+0\end {array}
+\right], \quad v=
+\left[ \begin {array}{cccc} 
+-6 \\ \noalign{\medskip}             
+-12  \\ \noalign{\medskip}        
+0 \end {array}
+\right] 
+$$
+providing your answer in both radians and degrees.
+
+
+\end{Exercise}
+
+
+
+\bigskip
+
+\begin{Exercise}[title={A simple sum}, difficulty = 0, label = exmm]
+Let
+$$A =  \left[ \begin {array}{cccc} 
+9  & 8  & 6 & 7 \\ \noalign{\medskip}       
+2  & 2  & 7 & 8 \\ \noalign{\medskip}        
+-1  & 3  & 1 & 1\end {array}
+ \right] 
++
+ \left[ \begin {array}{cccc} 
+0  & 1  & 6 & 7 \\ \noalign{\medskip}       
+2  & 2  & 2 & 8 \\ \noalign{\medskip}        
+1  & -3  & 0 & 1\end {array}
+ \right] 
+$$
+Find $A$.
+\end{Exercise}
+
+
+
+\begin{Exercise}[title={More addition}, difficulty = 0, label = exmm]
+\Question 
+Let
+$$a =  \left[ \begin {array}{c} 
+1   \\ \noalign{\medskip}       
+2   \\ \noalign{\medskip}    
+-2  \\ \noalign{\medskip}        
+1   \end {array}
+ \right] $$
+and $$
+b =  \left[ \begin {array}{c} 
+0   \\ \noalign{\medskip} 
+0    \\ \noalign{\medskip}        
+5   \\ \noalign{\medskip}        
+-1   \end {array}
+ \right] 
+$$
+Find $a+b$.
+
+\Question Let
+$$u =  \left[ \begin {array}{ccccc} 
+e  & 2  & -4 & 0 & -1  -1   \end {array}     
+ \right] $$
+and $$
+v =  \left[ \begin {array}{ccccc} 
+\pi  & 1  &1  &0 &0-1   \end {array}
+ \right] 
+$$
+Find $u+v$.
+
+
+\Question Let
+$$A =  \left[ \begin {array}{ccc} 
+\sqrt{2}  & 8  & 6  \\ \noalign{\medskip}       
+2  & 1  & 7  \\ \noalign{\medskip}    
+-12  & 1  & 1 \\ \noalign{\medskip}        
+1  & 0  & -1 \end {array}
+ \right] $$
+and $$
+B =  \left[ \begin {array}{cccc} 
+0  & 1  & 2  \\ \noalign{\medskip} 
+2  & -1  & 4  \\ \noalign{\medskip}        
+-2  & 2  & 2  \\ \noalign{\medskip}        
+1  & -1  & 1 \end {array}
+ \right] 
+$$
+Find $A+B$.
+\end{Exercise}
+
+
+\bigskip
+
+\begin{Exercise}[title={A simple product}, difficulty = 0, label = exmm]
+\Question	Let
+	$$M =  \left[ \begin {array}{ccc} 
+	2  & 1  & 3 \\ \noalign{\medskip}            
+	1  & -1  & 4 \end {array}
+	\right], \quad N=
+	\left[ \begin {array}{cc} 
+	2  & 2 \\ \noalign{\medskip}             
+	1  & -1\end {array}
+	\right] 
+	$$
+\Question	Find the product $NM$.  Which of the products $MN$, $MM$ and $NN$ make sense?
+\end{Exercise}
+
+
+
+\begin{Exercise}[title={Matrix Multiplication}, difficulty = 0, label = exmm]
+	Let
+	$$A = \left( \begin{array}{rrrr}
+	1 & -2 & 1 & 1\\
+	2 & 2 & -3 &0\\
+	1 & 2 & 1 &-1\end{array} \right)$$
+	$$B = \left( \begin{array}{rrr}
+	9 & 8 & 6 \\
+	2 & 2 & 7\\
+	1 & 3 & 1 \\
+	-1 &2 &0\end{array} \right)$$
+	Compute the product $AB$.
+\end{Exercise}
+\bigskip
+
+
+\begin{Exercise}[title={Matrix Multiplication}, difficulty = 0, label = exmm]
+	Let
+	$$A = \left( \begin{array}{rrrr}
+	-1 & 2 & 0 & -1\\
+	3 & -4 & 2 &1\end{array} \right)$$
+	$$B = \left( \begin{array}{rrr}
+	-4 & 1 \\
+	1 & 2\\
+	1 & 1 \\
+	1 &-7\end{array} \right)$$
+	Compute the product $AB$.
+\end{Exercise}
+\bigskip
+
+
+\bigskip
+
+\begin{Exercise}[title={$AB \ne BA$}, difficulty = 0, label = exmm]
+Let
+$$A = \left( \begin{array}{rr}
+1 & 0\\
+2 & 2 \end{array} \right)$$
+$$B = \left( \begin{array}{rr}
+2 & 1\\
+1 & 1 \end{array} \right)$$
+\Question Find $AB$.
+\Question Find $BA$.
+\end{Exercise}
+\bigskip
+
+\bigskip
+
+\begin{Exercise}[title={$AB \ne BA$}, difficulty = 0, label = exmm]
+Let
+$$A = \left( \begin{array}{rr}
+-1 & 2\\
+0 & 1 \end{array} \right)$$
+$$B = \left( \begin{array}{rr}
+9 & -6\\
+4 & -2 \end{array} \right)$$
+\Question Find $AB$.
+\Question Find $BA$.
+\end{Exercise}
+\bigskip
+
+
+
+
+\index{vector!position}
+\begin{Exercise}[title={Position vectors}, difficulty = 0, label = exmm]
+The representation of an $n$-tuple $x$ as a position vector involves drawing a line with
+arrow fron the origin ${\mathbf{0}}$ to $x$.
+Let
+$$x = \left( \begin{array}{r}
+1 \\
+2 \end{array} \right), \quad
+y = \left( \begin{array}{r}
+-1 \\
+3 \end{array} \right)
+$$
+\Question Draw the position vectors associated with the points $x$ and $y$.
+\Question Compute $w = 3x-2y$ and plot this position vector.
+\end{Exercise}
+\bigskip
+
+
+\index{vector!position}
+\begin{Exercise}[title={Position vectors}, difficulty = 0, label = exmm]
+Consider the vector starting at the point $(3,2)$ and ending at $(-2,1)$.
+\Question Express this vector in terms of two position vectors, i.e., 
+vectors that have the origin as an end point.
+\Question Draw the three vectors.
+\end{Exercise}
+
+\bigskip
+\begin{Exercise}[title={Transpose again}, difficulty = 0, label = 3T]
+	Show that
+	$$(ABC)^T = C^TB^TA^T$$
+	What restrictions are there on the sizes of the matrices $A, B, C$?
+	
+	%Solution: 
+	%$$A^T(A^{-1})^T = (A^{-1}A)^T = I$$
+	%$$(A^{-1})^TA^T = (AA^{-1})^T = I$$
+	
+\end{Exercise}
+
+\end{document}
