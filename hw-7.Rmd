@@ -1,0 +1,266 @@
+---
+title: "DSCI445 - Homework 7"
+author: "Henrique Magalhaes Rio"
+date: "Due 12/11/2019 by 4pm"
+output: pdf_document
+---
+
+Be sure to `set.seed(445)` at the beginning of your homework. 
+
+```{r}
+#reproducibility
+set.seed(445)
+library(tidyverse) ## data manipulation
+library(knitr)
+library(ggrepel)
+
+```
+
+1. Consider the `USArrests` data. We will now perform hierarchical clustering on the states.
+
+    a) Using hierarchical clustering with complete linkage and Euclidean distance, cluster the states.
+    
+```{r}
+
+data <- USArrests
+
+
+d <- dist(data)
+
+
+
+hc <- hclust(d, method = "complete")
+plot(hc)
+
+```
+    
+    
+    b) Cut the dendrogram at a height that results in three distinct clusters. Which states belong to which clusters?
+    
+```{r}
+
+
+cut.hc <- cutree(hc,k=3)
+
+data.frame(cut.hc)
+
+
+```
+    
+    
+    c) Hierarchically cluster the states using complete linkage and Euclidean distance, *after scaling the variables to have standard deviation one*.
+    
+    
+```{r}
+data <- USArrests
+
+x<- scale(data)
+d2 <- dist(x)
+
+
+
+hc.2 <- hclust(d2, method = "complete")
+plot(hc.2)
+
+```
+    
+    
+    d) What affect does scaling the variables have on the hierarchical clusters obtained? In your opinion, should the variables be scaled before the inter-observation dissimilarities are computed? Provide a justification for your answer.
+    
+**There seems to be less of a discrepancy on the heights of the Cluster Dendogram**
+    
+2. In this problem you will generate simulatted data and then perform PCA and $K$-means clustering on the data. First run the following to obtain the data.
+
+    ```{r}
+    library(mvtnorm)
+    
+    n <- 20
+    p <- 10
+    x <- rmvnorm(n*3, rep(0, p))
+    
+    # shift means
+    x[seq_len(n), ] <- x[seq_len(n), ] + matrix(rep(runif(p, min = 1, max = 3), n), nrow = n, byrow = TRUE)
+    x[seq_len(n) + 2*n, ] <- x[seq_len(n) + 2*n, ] + matrix(rep(runif(p, min = -3, max = -1), n), nrow = n, byrow = TRUE)
+    
+    # add class labels
+    y <- c(rep("-1", n), rep("0", n), rep("1", n))
+    ```
+    
+    a) Perform PCA on the $60$ observations and plot the first two principal comonent score vectors. Use a different color to indicate the observations in each of the true classes (`y`).
+    
+    
+```{r}
+pca<-prcomp(x)
+
+ggplot()+geom_point(aes(x=pca$x[,1],y=pca$x[,2],color=y))+labs(x="PC1",y="PC2")
+
+
+```
+    
+    
+    b) Perform $K$ means clustering of the observations with $K = 3$. How well do the clusters you obtained in $K$-means clustering compare to the true class labels? (**Hint:** `table()` may be useful here.)
+    
+```{r}
+km3 <- kmeans(x, 3,nstart=20)
+
+table(cluster=km3$cluster,true=y)
+```
+    
+    
+They seem to be clustered perfectly.
+  
+    c) Perform $K$ means clustering of the observations with $K = 2$.  Describe your results.
+    
+    
+```{r}
+km2 <- kmeans(x, 2)
+
+table(cluster=km2$cluster,true=y)
+
+x %>%
+  data.frame() %>%
+  mutate(cluster = as.character(km2$cluster)) %>%
+  ggplot() +
+  geom_point(aes(pca$x[,1], pca$x[,2], colour = cluster))
+
+```
+
+Now it seems that two cluster have been merged together, so we have one cluster with 20 obs. and one with 40 obs.
+    
+    d) Perform $K$ means clustering of the observations with $K = 4$.  Describe your results.
+    
+```{r}
+km4 <- kmeans(x, 4)
+
+table(cluster=km4$cluster,true=y)
+
+
+x %>%
+  data.frame() %>%
+  mutate(cluster = as.character(km4$cluster)) %>%
+  ggplot() +
+  geom_point(aes(pca$x[,1], pca$x[,2], colour = cluster))
+  
+
+```
+    
+
+It seems that one of the cluster divided into one cluster with 9 obs and another with 11 observations.
+  
+    
+    e) Now perform $K$ means clustering with $K = 3$ on the first two principal components rather than the raw data. Comment on the results.
+
+```{r}
+xpca<- data.frame(pc1=pca$x[,1],pc2=pca$x[,2])
+
+kmpca <- kmeans(x, 3)
+
+table(cluster=kmpca$cluster,true=y)
+
+
+
+
+x %>%
+  data.frame() %>%
+  mutate(cluster = as.character(kmpca$cluster)) %>%
+  ggplot() +
+  geom_point(aes(pca$x[,1], pca$x[,2], colour = cluster))
+
+```
+
+There doesnot seem to be a lot of difference since we still have 3 well defined clusters.
+
+
+    f) Using the `scale()` function, perform $K$ means clustering with $K = 3$ on the data *after scaling each variable to have standard deviation one*. How do these results compare to those obtained in b)-e)?
+    
+```{r}
+sx <-scale(x)
+
+km3s <- kmeans(sx, 3)
+
+pca2 <- prcomp(sx)
+
+table(cluster=km3s$cluster,true=y)
+
+sx %>%
+  data.frame() %>%
+  mutate(cluster = as.character(km3s$cluster)) %>%
+  ggplot() +
+  geom_point(aes(pca2$x[,1], pca2$x[,2], colour = cluster))
+
+
+```
+    
+Scaling seems to make the groups a lot tighter together as opposed to the non scaled one.
+    
+    
+3. In this folder, there is a data set called `gene_exp.csv` that consists of $40$ tissue samples with measurements on $1,000$ genes. The first $20$ are from healthy patients while the second $20$ are from a diseased group.
+
+    a) Load the data into `R`. Note, there are no headers in the file.
+    
+```{r}
+gen <- read.csv("gene_exp.csv")
+
+
+
+
+```
+    
+    b) Apply hierarchical clustering to the samples using correlation-based distance and plot the dendrogram. Do the genes separate the samples into the two groups? Do your results depend on the type of linkage used?
+    
+    
+```{r}
+
+
+
+xg<- scale(gen)
+dg <- dist(xg)
+
+
+
+hcg <- hclust(dg, method = "complete")
+plot(hcg)
+
+hcg1 <- hclust(dg, method = "single")
+plot(hcg1)
+
+hcg2 <- hclust(dg, method = "average")
+plot(hcg2)
+```
+    
+ 
+ **It does separate the genes in 2 groups , and it seems that it is consistent between all the linkage types.**   
+    
+    c) Your collaborator wants to know which genes differ the most across the two groups. Suggest a way to answer this question and apply it here.
+    
+    
+    
+```{r}
+
+
+
+
+pcag<-prcomp(gen, center = TRUE, scale = TRUE)
+xg<- scale(gen)
+dg <- dist(xg)
+
+kmeang <-kmeans(dg,2)
+
+df<-data.frame(PC1=pcag$x[,1],PC2= pcag$x[,2],cluster=kmeang$cluster,genes=names(kmeang$cluster))
+
+
+
+ggplot(df, aes(x= PC1, y= PC2, color=as.factor(cluster), label=genes))+
+  geom_point() +geom_label_repel(aes(label=ifelse(PC2>2 | PC2< -2 ,as.character(genes),'')),max.overlaps = 30)
+
+
+
+
+```
+    
+Using PCA and kmeans, we can plot the groups and the labels to the genes which makes it easier to seen the genes that differ the most.    
+    
+    
+    
+    
+    

@@ -1,0 +1,499 @@
+---
+title: "DSCI445 - Homework 2"
+author: "Henrique Magalhaes Rio"
+date: "Due 9/25/2019 by 4pm"
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+Be sure to `set.seed(445)` at the beginning of your homework.
+
+\newcommand{\answer}[1]{\textcolor{blue}{[#1]}}
+
+```{r}
+#reproducibility
+set.seed(445)
+library(ggplot2)
+library(dplyr)
+library(class)
+library(MASS)
+library(GGally)
+library(ISLR)
+library(ggpubr)
+```
+
+## Regression
+
+In this exercise you will create some simulated data and will fit simple linear regression models to it. Make sure to use `set.seed(445)` prior to starting part (a) to ensure reproducible results.
+
+(a) Using the `rnorm()` function, create a vector $x$ containing $100$ observations drawn from a $N(0, 1)$ distribution. This represents the feature, $X$.
+
+```{r}
+x <- rnorm(100)
+
+```
+
+
+(b) Using the `rnorm()` function, create a vector `eps` containing $100$ observations drawn from a $N(0, 0.25)$ distribution, i.e. a Normal distribution with mean zero and variance $0.25$.
+
+```{r}
+eps <- rnorm(100,0,0.25)
+```
+
+
+(c) Using `x` and `eps`, generate a vector `y` according to the model
+    $$
+    Y = -1 + 0.5 X + \epsilon.
+    $$
+    What is the length of the vector `y`? What are the values of $\beta_0$ and $\beta_1$ in this linear model?
+    
+```{r}
+y=-1+0.5*x+eps
+
+df <- data.frame(x,y)
+
+```
+ 
+    
+**n=100**
+**$\beta_0=-1$**
+**$\beta_1=0.5$**
+
+
+ 
+    
+(d) Create a scatterplot displaying the relationship between `x` and `y`. Comment on what you observe.
+
+```{r}
+ggplot(df,aes(x,y))+geom_point()
+```
+
+
+**There is a clear linear relationship, but there is also a lot of variation around if we were to plot a line.**
+
+
+(e) Fit a least squares linear model to predict `y` from `x`. Comment on the model obtained. How do $\hat{\beta}_0$ and $\hat{\beta}_1$ compare to $\beta_0$ and $\beta_1$?
+
+```{r}
+lm<-lm(y~x)
+
+summary(lm)
+```
+
+**$\hat{\beta}_0$ and  $\hat{\beta}_1$ seem to be slightly different than the true values (around 0.02 dif.) $\beta_0$ and $\beta_1$.**
+
+
+
+(f) Display the least squares line on the scatterplot obtained in (d) in blue. Draw the population regression line on the plot in red. (See `geom_abline()` for how to add a line based on intercept and slope.)
+
+```{r}
+ggplot(df,aes(x,y))+geom_point()+geom_abline(aes(slope=coef(lm)[2],intercept=coef(lm)[1]),color="red")+theme_bw()
+```
+
+
+
+(g) Now fit a polynomial regression model that predicts `y` using `x` and $\texttt{x}^2$. Is there evidence that the quadratic term improves the model fit? Explain your answer.
+```{r}
+lm2<-lm(y~x+I(x^2))
+
+summary(lm2)
+```
+
+
+**As we can see by the P-value 0.771 there is no evidence of a quadratic relationship.**
+
+
+(h) Repeat (a)-(f) after modifying the data generation process in such a way that there is *less* noise in the data. The model should remain the same. You can accomplish this by changing the variance of the normal distribution used to generate the error term $\epsilon$ in (b). Describe your results.
+
+
+```{r}
+eps <- rnorm(100,0,0.02)
+y=-1+0.5*x+eps
+
+df <- data.frame(x,y)
+
+lm<-lm(y~x)
+
+summary(lm)
+
+
+ggplot(df,aes(x,y))+geom_point()+geom_abline(aes(slope=coef(lm)[2],intercept=coef(lm)[1]),color="red")+theme_bw()
+
+
+
+
+```
+
+
+**In this model we get much closer to the real estimate of the model of 0.5, we also have a higher R-Squared when compared to the previous model.**
+
+
+(i) Repeat (a)-(f) after modifying the data generation process in such a way that there is *more* noise in the data. The model should remain the same. You can accomplish this by changing the variance of the normal distribution used to generate the error term $\epsilon$ in (b). Describe your results.
+
+```{r}
+eps <- rnorm(100,0.2,10)
+y=-1+0.5*x+eps
+
+df <- data.frame(x,y)
+
+lm<-lm(y~x)
+
+summary(lm)
+
+
+ggplot(df,aes(x,y))+geom_point()+geom_abline(aes(slope=coef(lm)[2],intercept=coef(lm)[1]),color="red")+theme_bw()
+```
+
+
+**In this model we have a intercept that is much different from the others one's, and the slope is also different but to a lesser degree when compared to the other models.**
+
+
+(j) What are the confidence intervals for $\beta_0$ and $\beta_1$ based on the original data set, the noisier data set, and the less noisy data sets? Comment on your results.
+
+```{r}
+# simulated regression task
+cibeta0=c(-1.04688+1.96*0.02500,-1.04688-1.96*0.02500)
+cibeta0
+cibeta1=c(0.50300-1.96*0.02608,0.50300+1.96*0.02608)
+cibeta1
+cibeta0n=c(-2.5180-1.96*0.9571,-2.5180+1.96*0.9571)
+cibeta0n
+cibeta1n=c(0.4411-1.96*0.9985,0.4411+1.96*0.9985)
+cibeta1n
+
+cibeta0l=c(-0.999390-1.96*0.001894,-0.999390+1.96*0.001894)
+cibeta0l
+cibeta1l=c(0.500095-1.96*0.001976,0.500095+1.96*0.001976)
+cibeta1l
+
+```
+
+**95% CIs for the Original data set:**
+ **$\beta_0$=(-1.09588, -0.99788)**
+ **$\beta_1$=(0.451883, 0.5541168)**
+ 
+**95% CIs for the Noisier data set:**
+ **$\beta_0$=(-4.393916, -0.642084)**
+ **$\beta_1$=-1.51596, 2.39816)**
+
+**95% CIs for the less noisy data set:**
+ **$\beta_0$=(-1.0031022,-0.9956778)**
+ **$\beta_1$=(0.496222,0.503968)**
+ 
+ 
+ **We can see that the less noisy data set has a much smaller range between the confidence intervals when compared to the original data set, meanwhile the noisier data set has much larger ranges between the data sets.**
+   
+
+## Classification
+
+1. When the number of features $p$ is large, there tends to be a deterioration in the perforance of KNN and other *local* approaches that perform prediction using only observations that are *near* the test observation for which a prediction must be made. This phenomenon is known as the *curse of dimensionality*, and it ties into the fact that non-parametric approaches often perform poorly when $p$ is large. We will now investigae this curse.
+
+    (a) Suppose that we have a set of observations, each with measurements on $p = 1$ feature, $X$. We assume that $X$ is uniformly (evenly) distributed on $[0,1]$. Associated with each observation is a response value. Suppose that we wish to predict a test observation's response using only observations that are within $10\%$ of the range of $X$ closest to that test observation. For instance, in order to predict the response for a test observation with $X = 0.6$ we will use observations in the range $[0.55, 0.65]$. On average, what fraction of the available observations will we use to make this prediction?
+    
+```{r}
+avg=0
+for (i in 1:100){
+h<-runif(1000)
+ h <- h[h>0.55]
+ h<- h[h<0.65]
+avg<-avg+length(h)/1000
+}
+avg/100
+```
+**On average we will use about $\frac{1}{10}$ of the total observations.**
+    
+
+    
+    (b) Now suppose that we have a set of observations, each with measurements on $p = 2$ features, $X_1$ and $X_2$. We assume $(X_1, X_2)$ are uniformly distributed on $[0,1]\times[0,1]$. we wish to predict a test observation's response using only observations that are within $10\%$ of the range of $X_1$ *and* within $10\%$ of the range of $X_2$ closest to that test observation. For instance, in order to predict the response for a test observation with $X_1 = 0.6$ and $X_2 = 0.35$ we will use observations in the range $[0.55, 0.65]$ for $X_1$ and in the range $[0.3, 0.4]$ for $X_2$. On average, what fraction of the available observations will we use to make this prediction?
+```{r}
+avg=0
+for (i in 1:100){
+h<-runif(1000)
+h2<-runif(1000)
+df <- data.frame(h,h2)
+df<-df %>% filter(h<0.65 & h>0.55 & h2<0.4 & h2>0.3)
+avg<-avg+nrow(df)/1000
+
+}
+
+avg/100
+```
+ 
+ **Around $\frac{1}{100}$ of the available observations will be used to make the prediction in this case.** 
+ 
+    
+    
+    (c) Now suppose that we have a set of observations, each with measurements on $p = 100$ features. Again, the observations are uniformly distributed on each feature, and again each feature ranges from $0$ to $1$. we wish to predict a test observation's response using only observations that are within $10\%$ of each feature's range that is closest to that test observation. What fraction of the available observations will we use to make this prediction?
+    
+```{r}
+avg=0
+for (i in 1:100){
+h<-runif(1000)
+h2<-runif(1000)
+h3 <- runif(1000)
+h4<- runif(1000)
+h5<- runif(1000)
+df <- data.frame(h,h2,h3,h4,h5)
+df<- df %>% filter(h<0.65 & h>0.55 & h2<0.4 & h2>0.3 & h3<0.2 & h3>0.1 & h4>0.15 & h4<0.25 & h5>0.25 & h5<0.35)
+avg<-avg+nrow(df)/1000
+
+}
+avg/100
+```
+
+
+**p=3: $\frac{1}{1000}$**
+**p=4: $\frac{1}{10^4}$**
+**p=5: $\frac{1}{10^5}$**
+.
+.
+.
+**p=100:$\frac{1}{10^{100}}$**
+
+    
+    (d) Using your answers to (a)--(c), argue that a drawback of KNN when $p$ is large is that there are very few training observations *near* any given test observation.
+
+**Based on (a)-(c) we can see that as p increases, for each combination of each feature there are less and less observations in the neighborhood(from $\frac{1}{10}$ when p=1 to $\frac{1}{10^{100}}$ when p=100 ) and therefore, methods that use said neighborhood to make prediction become a lot worse for the same amount of data. Therefore, when $p$ is large we need a lot of data on all of the features in order to get better predictions for the KNN method.**
+
+    
+    (e) Now suppose that we wish to make a prediction for a test observation by creating a $p$-dimensional hypercube centered around the test observation that contains, on average, $10\%$ of the training observations. For $p = 1, 2,$ and $100$, what is the length of each side of the hypercube? Comment on your answer.
+    
+        [Hint: A hypercube is a generalization of a cube to an arbitrary number of dimensions. When $p = 1$, a hypercube is simple a line segment. When $p = 2$ it is a square, and when $p = 100$ it is a $100$-dimensional cube.]
+        
+2. Suppose we collect data for a group of students in a statistics class with variables $X_1 =$ hours studied, $X_2 =$ undergrad GPA, and $Y =$ receive an A. We fit a logistic regression and produce estimated coefficients, $\hat{\beta}_0 = -6, \hat{\beta}_1 = 0.05, \hat{beta}_2 = 1$.
+
+    (a) Estimate the probability that a student who studies for $40$h and has an undergrad GPA of $3.5$ gets an A in the class.
+    
+```{r}
+prob <-exp(-6+0.05*40+1*3.5)/(1+exp(-6+0.05*40+1*3.5))
+paste('The probability is:',prob)
+```
+    
+    
+    (b) How many hours would the student in part (a) need to study to have a $50\%$ chance of getting an A in the class?
+    
+```{r}
+prob <-exp(-6+0.05*45.65+1*3.5)/(1+exp(-6+0.05*40+1*3.5))
+paste('Around 45.65 hours the probability of getting an A is',prob)
+```
+    
+    
+3. This question should be answered using the `Weekly` data set, which is part of the `ISLR` package. This data contains weekly percentage returns for the S&P 500 stock index between 1990 and 2010.
+
+    (a) Produce some numerical and graphical summaries of the `Weekly` data. Do there appear to be any patterns?
+    
+```{r}
+    ## load the data
+    library(ISLR)
+    
+    ## take a look
+    head(Weekly)
+    
+    Weekly %>% group_by(Direction) %>% summarise(meanVolume=mean(Volume), meanToday= mean(Today), meanLag1= mean(Lag1), meanLag2= mean(Lag2))
+
+    ggarrange(ggplot(data=Weekly,aes(x=Volume,y=Direction))+ geom_boxplot() + coord_flip(), 
+
+    ggplot(data=Weekly,aes(x=Lag2,y=Direction)) + geom_boxplot() + coord_flip(),
+    
+    ggplot(data=Weekly,aes(x=Lag3,y=Direction)) + geom_boxplot() + coord_flip(),
+    ggplot(data=Weekly,aes(x=Lag5,y=Direction)) + geom_boxplot() + coord_flip())
+
+```
+**Looking at the graphs and the data there does not seem to be any patterns that could help predict the direction, since all of the means seem to be quite similar for each direction.**
+
+    
+    
+    (b) Use the full data set to perform a logistic regression with `Direction` as the response and the five lag variables plus `Volume` as predictors. Use the summary function to print the results. Do any of the predictors appear to be statistically significant? If so, which ones?
+
+
+
+```{r}
+glm1 <- glm(Direction ~ .-Today, family = "binomial", data=Weekly)
+
+summary(glm1)
+```
+    
+   
+**Only Lag2 seems to be statistically significant.**
+
+    
+    (c) Compute the confusion matrix and overall fraction of correct predictions. Explain what the confusion matrix is telling you about the types of mistakes made by logistic regression.
+    
+```{r}
+predicted <- predict(glm1, Weekly, "response")
+predicted <- ifelse(predicted>0.5,"Up","Down")
+
+confm<-table(predicted=predicted,True=Weekly$Direction)
+confm
+paste("the overall fraction of correct predictions is :",(confm[1,1]+confm[2,2])/sum(confm))
+```
+**the confusion matrix is telling us the amount of values that we predicted that where right in the test data and the amount that we predicted wrong in the test data.**
+
+     
+    (d) Now fit the logistic regression model using a traning data period from 1990 to 2009 with `Lag2` as the only predictor. Compute the confusion matrix and the overall fraction of correct predictions for the held out data (that is the data from 2009 and 2010).
+    
+```{r}
+
+train <- Weekly %>% filter(Year <= 2009)
+test <- Weekly %>% filter(Year == 2010)
+
+glm2 <- glm(Direction ~ Lag2, family = "binomial", data=train)
+
+
+
+predicted2 <- predict(glm2, newdata = test, "response")
+
+predicted2 <- ifelse(predicted2>0.5,"Up","Down")
+
+confm2<-table(predicted=predicted2,True=test$Direction)
+confm2
+paste("the overall fraction of correct predictions is :",(confm2[1,1]+confm2[2,2])/sum(confm2))
+```
+    
+    
+    (e) Repeat (d) using LDA.
+
+```{r}
+LDA1 <- lda(Direction ~ Lag2, data=train)
+
+
+
+confm3 <- table(predicted=predict(LDA1, newdata = test)$class,True=test$Direction)
+
+confm3
+paste("the overall fraction of correct predictions is :",(confm3[1,1]+confm3[2,2])/sum(confm3))
+
+
+```
+    
+    
+    (f) Repeat (d) using KNN with K = 1.
+    
+```{r}
+
+knnm <- knn(train[3],test[3],train$Direction,k=1 )
+
+confm4 <- table(pred = knnm, true = test$Direction)
+
+confm4
+
+paste("the overall fraction of correct predictions is :",(confm4[1,1]+confm4[2,2])/sum(confm4))
+
+
+
+
+
+
+
+```
+    
+    
+    (h) Which of these methods appears to provide the best results on this data?
+    
+**it appears that the LDA and the logistic regression are the best methods with an overall prediction rate of 67%**
+    
+    (i) Experiment with different combinations of predictors, including possible transformations and interactions, for each of the methods. Report the variables, method, and associated confusion matrix that appears to provide the best results on the held out data. Note that you can experiment with values for $K$ in the KNN classifier.
+    
+```{r}
+
+
+
+
+
+
+
+LDA1 <- lda(Direction ~ Lag1*Lag2+Lag3+Lag5+Volume, data=train)
+
+
+confm3 <- table(predicted=predict(LDA1, newdata = test)$class,True=test$Direction)
+
+confm3
+paste("the overall fraction of correct predictions is :",(confm3[1,1]+confm3[2,2])/sum(confm3))
+
+
+
+
+
+
+
+```
+ **After experimenting the best model had  the variables Lag1,Lag2,Lag3,Lag5+Volume with an interaction between Lag1 and Lag2, and the method used was LDA and the overall prediction as 75%.**
+
+    
+4. Using the `Boston` data set, fit classification models in order to predict whether a given suburb has a crime rate above or below the median. Explore logistic regression, LDA, and KNN models using various subsets of the predictors. Describe your findings.
+
+
+```{r message=FALSE, warning=FALSE}
+    ## load the data
+    library(MASS)
+    library(GGally)
+    
+    ## take a look
+    
+    
+    boston <- Boston %>% mutate(avgcrim = ifelse(crim>median(crim),'above','below'))
+    
+    head(boston)
+    
+    train <- boston[1:253,]
+    test <- boston[253:506,]
+    
+    
+    ggpairs(boston)
+    
+    ```
+    
+    
+```{r}
+glm2 <- glm(as.factor(avgcrim) ~ indus+age+dis+rad+nox+lstat+tax, family = "binomial", data=train)
+
+summary(glm2)
+
+predicted2 <- predict(glm2, newdata = test, "response")
+
+predicted2 <- ifelse(predicted2>0.5,"Below","Above")
+
+confm2<-table(predicted=predicted2,True=test$avgcrim)
+confm2
+paste("the overall fraction of correct predictions is :",(confm2[1,1]+confm2[2,2])/sum(confm2))
+```
+    
+    
+    
+    
+
+    
+```{r}
+
+
+LDA1 <- lda(as.factor(avgcrim) ~ indus+age+dis+rad+nox+lstat*tax+rm, data=train)
+
+
+confm3 <- table(predicted=predict(LDA1, newdata = test)$class,True=test$avgcrim)
+
+confm3
+paste("the overall fraction of correct predictions is :",(confm3[1,1]+confm3[2,2])/sum(confm3))
+```
+    
+```{r}
+knnm <- knn(train[,c("medv","tax","indus","age","nox")],test[,c("medv","tax","indus","age","nox")],train$avgcrim,k=32)
+
+confm4 <- table(pred = knnm, true = test$avgcrim)
+
+confm4
+
+paste("the overall fraction of correct predictions is :",(confm4[1,1]+confm4[2,2])/sum(confm4))
+```
+ 
+**After experimenting with the models it seems that the Logistics regression model with the variables, $indus+age+dis+rad+nox+lstat+tax$ reached the highest overall prediction rate at 89% and it was the same as the LDA model with $indus+age+dis+rad+nox+lstat*tax+rm$ that includes an interaction. However, it seems that the logistic model is better a predicting the suburbs that have a crime rate above the median, but miss classifies more suburbs that have a crime rate below the median, when compared to LDA it is the opposite. LDA is better at predicting the suburbs that have a crime rate below the median, while it miss classifies more suburbs that have crime rate above the median when compared to logistic regression. The KNN method could not match the LDA and the Logistic Regression method in terms of overall prediction, since the max it was able to reach was 87% using the variables $medv+indus+age+nox+tax$ and $k=32$.**
+    
+
+
+
+
+
+

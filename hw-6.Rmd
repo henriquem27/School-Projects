@@ -1,0 +1,426 @@
+---
+title: "DSCI445 - Homework 6"
+author: "Your Name"
+date: "Due 11/20/2019 by 4pm"
+output: pdf_document
+---
+
+Be sure to `set.seed(445)` at the beginning of your homework. 
+
+```{r message=FALSE, warning=FALSE}
+#reproducibility
+set.seed(445)
+
+library(leaps)
+library(ISLR)
+library(tidyverse) 
+library(knitr)
+library(glmnet) # package for lasso and ridge regression
+library(pls)
+library(ISLR)
+library(ggpubr)
+library(MASS)
+library(splines)
+library(gam)
+library(tree)
+library(randomForest)
+library(gbm)
+library(caret)
+library(e1071)
+library(plot3D)
+```
+
+1. We will explore the maximal margin classifier on a toy data set.
+
+    a) We are given $n = 7$ observations in $p = 2$ dimensions. For each observation, there is an associated class label.
+    
+```{r, echo = FALSE, message = FALSE}
+      library(knitr)
+      library(dplyr)
+    
+      df <-data.frame(Obs = 1:7, X_1 = c(3, 2, 4, 1, 2, 4, 4), X_2 = c(4, 2, 4, 4, 1, 3, 1), 
+                 Y = c(rep("Red", 4), rep("Blue", 3))) 
+      
+```
+  
+      Sketch the observations.
+    
+      
+    b) Sketch the optimal separating hyperplane and provide the equation for this hyperplane.
+
+    
+    c) Describe the classification rule for the maximal marginal classifier. It should be along the lines of "Classify to Red if $\beta_0 + \beta_1 X_1 + \beta_2 X_2 > 0$, and classify as Blue otherwise. Provide the values of $\beta_0, \beta_1, \beta_2$.
+    
+![Part 1](/cloud/project/hw6part1dsci445.png)
+    
+    
+    d) On your sketch, indicate the margin for the maximal margin classifier.
+  
+    e) Indicate the support vectors for the maximal margin classifier.
+  
+    f) Argue that a slight movement of the seventh observation would not affect the maximal margin hyperplane.
+  
+    g) Draw an additional observation on the plot so that the two classes are no longer separable by a hyperplane.
+    
+![Part 2](/cloud/project/hw6part2dsci445.png)
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+2. We have seen that we can fit an SVM with a non-linear kernel in order to perform classification using a non-linear decision boundary. We will now see that we can also obtain a non-linear decision boundary by performing logistic regression using non-linear transformations of the features.
+
+    a)  Generate a data set with $n = 500$ and $p = 2$, such that the observations belong to two classes with a quadratic decision boundary. E.g.,
+
+```{r}
+      n <- 500
+      x1 <- runif(n) - 0.5
+      x2 <- runif(n) - 0.5
+      y <- as.numeric(x1^2 - x2^2 > 0)
+```
+      
+    b) Plot the observations, colored according to their class labels.
+    
+```{r}
+ggplot()+geom_point(aes(x=x1,y=x2,color=as.factor(y)))+scale_color_brewer(type = "qual",palette="Set1")
+```
+    
+  
+    c) Fit a logistic regression model to the data using $X_1$ and $X_2$ as predictors.
+    
+```{r}
+df<- data.frame(y,x1,x2)
+
+logit <- glm(as.factor(y)~x2+x1,family= "binomial",data=df)
+
+summary(logit)
+```
+    
+  
+    d) Apply this model to the training data in order to obtain a predicted class label for each training observation. Plot the observations, colored according to the *predicted* class labels. What shape is the decision boundary?
+    
+
+    
+```{r}
+prob<- logit %>% predict(df, type = "response")
+pred <- ifelse(prob > 0.5, 1, 0)
+
+
+ggplot()+geom_point(aes(x=x1,y=x2,color=as.factor(pred)))+scale_color_brewer(type = "qual",palette="Set1")
+
+```
+  
+  
+**The Decision boundary is linear**  
+  
+    e) Now fit a logistic regression model to the data using non-linear functions of $X_1$ and $X_2$ as predictors (e.g., $X_1^2, X_1 \times X_2, \log(X_2)$, etc.)
+    
+```{r}
+logit <- glm(as.factor(y)~x1*x2+I(x2^2),family= "binomial",data=df)
+
+summary(logit)
+
+
+```
+    
+  
+    f) Apply this model to the training data in order to obtain a predicted class label for each training observation. Plot the observations, colored according to the *predicted* class labels. What shape is the decision boundary? Repear a)- e) until you come up with an example in which the predicted class labels are obviously non-linear.
+```{r}
+
+logit <- glm(as.factor(y)~x1*x2+I(x2^5),family= "binomial",data=df)
+
+prob<- logit %>% predict(df, type = "response")
+pred <- ifelse(prob > 0.5, 1, 0)
+
+
+
+ggplot()+geom_point(aes(x=x1,y=x2,color=as.factor(pred)))+scale_color_brewer(type = "qual",palette="Set1")
+```
+  
+    g) Fit a support vector classifier with $X_1$ and $X_2$ as predictors. Obtain a class predictor for each training observation. Plot the observations, colored according to the *predicted* class labels.
+    
+
+    
+```{r}
+svm1 <-svm(as.factor(y) ~ ., data = df, cost = 10, scale = FALSE, kernel = "linear")
+
+
+
+predicted  <- predict(svm1,df,type="class")
+
+ggplot()+geom_point(aes(x=x1,y=x2,color=as.factor(predicted)))+scale_color_brewer(type = "qual",palette="Set1")
+```
+    
+  
+    h) Fit an SVM using a non-linear kernel to the data with $X_1$ and $X_2$ as predictors. Obtain a class predictor for each training observation. Plot the observations, colored according to the *predicted* class labels.
+```{r}
+svm1 <-svm(as.factor(y) ~ ., data = df, cost = 10, scale = FALSE, kernel = "radial")
+
+
+
+predicted  <- predict(svm1,df,type="class")
+
+ggplot()+geom_point(aes(x=x1,y=x2,color=as.factor(predicted)))+scale_color_brewer(type = "qual",palette="Set1")
+```
+    
+  
+    i) Comment on your results.
+    
+**Since the data is clearly non-linear, when we try to use the linear approach we only get 0's predicted, while using any non-linear approach we get both 0's and 1's even if it does not properly match the data it still manages the get some differentiation, while the radial kernel was pretty close to the original boundary**
+    
+    
+  
+3. In this problem, you will use support vector approaches to predict whether a given car gets high or low gas mileage based on the `Auto` data set in the `ISLR` package.
+
+    a) Create a binary variable that takes value 1 for gas mileage above the median and 0 for cars below the median.
+    
+```{r}
+auto <- Auto
+
+auto<- auto %>% mutate(medgas = ifelse(mpg>median(mpg),1,0))
+
+auto <-subset(auto,select = -mpg)
+
+
+
+```
+    
+  
+    b) Fit a support vector classifier to the data with various values of `cost`, in order to predict whether a car gets high or low gas mileage (be sure not to include the original gass mileage variable -- no cheating!). Report the cross-validation errors associated with different values of this parameter, comment on your results.
+    
+    
+```{r}
+
+
+svc <- tune(svm, medgas ~ ., data = auto, scale = TRUE, kernel = "linear", 
+                      ranges = list(cost = seq(0.1, 10, by = 0.1)))
+
+
+
+```
+    
+  
+  
+```{r}
+linsvm<- svc$performances
+
+linsvm
+
+svc$best.parameters
+```
+ 
+ 
+ **For each cost value we get a associated error with cost=0.8 being the lowest error** 
+  
+  
+  
+  
+    c) Now repeat (b) using SVMs with radial and polynomial basis kernels, with different values of `gamma`, `degree`, and `cost`. Report on your results.
+    
+```{r}
+
+
+svr <- tune(svm, medgas ~ ., data = auto, scale = TRUE, kernel = "radial", 
+                      ranges = list(cost = seq(0.1, 5, by = 0.5),gamma= seq(0.1, 5, by = 0.5)))
+
+
+```
+    
+    
+```{r}
+
+radsv<-svr$performances
+radsv
+
+svr$best.parameters
+```
+    
+ 
+    
+    
+```{r}
+
+svp <- tune(svm, medgas ~ ., data = auto, scale = TRUE, kernel = "polynomial", 
+                      ranges = list(cost = seq(0.1, 5, by = 0.5),degree=seq(1,10,by=1)))
+
+```
+    
+
+
+```{r}
+polysv<-svp$performances
+polysv
+
+svp$best.parameters
+```
+
+
+**For the radial kernel we get an error rate for each combination of cost and gamma which took a while to run ,and it seems the best parameter were a cost of 3.6 and gamma of 0.1. While, for the polynomial kernel the best combination seems to be cost=1.6 and degree 1**   
+
+  
+    d) Make some plots to back up your assertions in b) and c).
+    
+```{r}
+
+ggplot(linsvm)+geom_line(aes(x=cost,y=error))+labs(title="Linear Kernel")
+
+ggplot(radsv)+geom_line(aes(x=cost,y=error,group=gamma))+labs(title="Radial Kernel")
+ggplot(radsv)+geom_line(aes(x=gamma,y=error,group=cost),color="red")+labs(title="Radial Kernel")
+
+ggplot(polysv)+geom_line(aes(x=cost,y=error))+geom_line(aes(x=degree,y=error),color="cyan")+labs(title="Polynomial Kernel")
+ggplot(polysv)+geom_line(aes(x=degree,y=error))+labs(title="Polynomial Kernel")
+
+
+```
+    
+
+
+  
+4. This problem involves the `OJ` data set in the `ISLR` package.
+
+    a) Create a training set containing a random sample of 900 observations and a test set containg the remaining observations.
+    
+```{r}
+set.seed(445)
+n <- nrow(OJ)
+trn <- seq_len(n) %in% sample(seq_len(n), 900)
+
+## Choose predictors
+train <- OJ[trn,]
+test <- OJ[!trn,]
+
+```
+    
+  
+    b) Fit a support vecotr classifier to the training set using `cost = 0.01` with `Purchase` as the response and the other variables as predictors. Use the `summary()` function to produce summary statistics and describe the results obtained.
+    
+```{r}
+
+
+svmoj <-svm(Purchase ~ ., data = train, cost = 0.01, scale = TRUE, kernel = "linear")
+
+summary(svmoj)
+```
+    
+**The Results show the number of classes used in this case was 2 since it is a binary variable, and also the number of suppor vectors used to calculate the hypeplane in this case 476**
+  
+    c) What are the training and test error rates?
+    
+```{r}
+
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate:",(tstE[1]+tstE[4])*100/sum(tstE))
+
+```
+
+  
+    d) Use the `tune()` function to select an optimal `cost`. Consider values between $0.01$ and $10$.
+    
+```{r}
+
+svctune <- tune(svm, Purchase ~ ., data = train, scale = TRUE, kernel = "linear", 
+                      ranges = list(cost = seq(0.1, 10, by = 0.5)))
+
+svctune$best.parameters
+
+
+```
+    
+    
+  
+    e) Compute the training and test error rates using this new value for `cost`.
+    
+```{r}
+svmoj <-svm(Purchase ~ ., data = train, cost = 1.6, scale = TRUE, kernel = "linear")
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate:",(tstE[1]+tstE[4])*100/sum(tstE))
+
+
+```
+    
+  
+    f) Repeat b) through e) using a support vector machine with a radial kernal and default value for `gamma`.
+    
+    
+```{r}
+svmoj <-svm(Purchase ~ ., data = train, cost = 0.01, scale = TRUE, kernel = "radial",gamma=0.4)
+
+summary(svmoj)
+
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate:",(tstE[1]+tstE[4])*100/sum(tstE))
+
+
+svctune <- tune(svm, Purchase ~ ., data = train, scale = TRUE, kernel = "radial",gamma=0.5 ,
+                      ranges = list(cost = seq(0.1, 10, by = 0.5)))
+
+
+
+
+svmoj <-svm(Purchase ~ ., data = train, cost = svctune$best.parameters, scale = TRUE, kernel = "radial",gamma=0.4)
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate after tune:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate after tune:",(tstE[1]+tstE[4])*100/sum(tstE))
+
+```
+    
+  
+    g) Repeat b) through e) using a support vector machine with a polynomial kernal and `degree = 2`.
+    
+    
+```{r}
+svmoj <-svm(Purchase ~ ., data = train, cost = 0.01, scale = TRUE, kernel = "polynomial",gamma=0.4,degree=2)
+
+summary(svmoj)
+
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate:",(tstE[1]+tstE[4])*100/sum(tstE))
+
+
+svctune <- tune(svm, Purchase ~ ., data = train, scale = TRUE, kernel = "polynomial",gamma=0.5 ,degree=2,
+                      ranges = list(cost = seq(0.1, 10, by = 0.5)))
+
+
+
+
+svmoj <-svm(Purchase ~ ., data = train, cost = svctune$best.parameters, scale = TRUE, kernel = "polynomial",gamma=0.4,degree=2)
+
+trnE<-table(pred = predict(svmoj, train, type = "class"), true =  train$Purchase)
+tstE<-table(pred = predict(svmoj, test, type = "class"), true =  test$Purchase)
+paste("Train Error rate after tune:",(trnE[1]+trnE[4])*100/sum(trnE))
+paste("Test Error rate after tune:",(tstE[1]+tstE[4])*100/sum(tstE))
+```
+    
+  
+    h) Which approach gives the best results on this data?
+    
+**In this case the linear kernel did the best with a 81% test error rate, followed by the radial kernel with 79% error rate and lastly the degree 2 polynomial kernel with 78% error rate **
+    
+    
+    
+    
+    
+

@@ -1,0 +1,208 @@
+---
+title: "DSCI445 - Homework 1"
+author: "Henrique Magalhaes Rio"
+date: "Due 9/10/2021 by 4pm"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+Be sure to `set.seed(400)` at the beginning of your homework. 
+
+```{r}
+#reproducibility
+set.seed(400)
+```
+
+## R & ggplot2
+
+```{r}
+## load the data
+library(ggplot2)
+library(dplyr)
+
+## take a look
+head(diamonds)
+
+#################################
+## Continue your analysis here ##
+#################################
+
+str(diamonds)
+
+
+
+diamonds %>% arrange(desc(price)) %>% head(20)
+
+diamonds %>% arrange((price)) %>% head(20)
+
+
+summary(diamonds)
+```
+
+
+\textcolor{red}{If we are interested in determining what influences the price of diamonds, so that we can predict the price of diamonds based on the characteristics, by looking at summaries of the data in which we sort price in descending order and ascending order, we can see a lot of variation on the characteristics of diamonds both on the high priced ones and the low priced ones, this can be proven problematic were we to use them for predicting the price of diamonds. Also, looking at the summaries there seems to be a disparities between the number of observations of certain categories, for example, there seems to be way more ideal cut diamonds, when compared to fair cut diamonds, and that happens to other cuts.}
+
+
+
+```{r}
+ggplot(diamonds,aes(x=carat,y=price,color=color))+geom_point(alpha=0.5)+scale_color_brewer(type="qual",palette="Set3")+facet_grid(cut~clarity)+theme_minimal()
+
+```
+
+\textcolor{red}{from the graph we can see that as carat increase we do see an increase in price, however, the data seems to be quite spread out between higher priced diamonds. Furthermore, the spread in colors also is interesting considering that there seems to be a lot of diamonds of one of the worst colors (I) in similar prices when compared to the green color (D). We can also see the differences between the amount of diamonds for each category, for example FAIR,IF only has a few diamonds when compared to the others.}
+ 
+
+
+```{r}
+depthtest <- function(x,y,z){
+  2*z/((x+y)*(43-79)) 
+}
+
+detph2<- depthtest(diamonds$x,diamonds$y,diamonds$z)
+
+n<- ifelse(diamonds$depth==detph2,"Yes","No")
+
+n[n=="Yes"]
+
+```
+\textcolor{red}{In this case I tried to apply the formula for calculating depth that was placed in the help file of the dataset, And could not find any matches to the depth of the original data which could also be problematic.}
+
+## Regression
+
+```{r}
+## load the data
+library(MASS)
+library(ggpubr)
+
+
+## take a look
+head(Boston)
+```
+
+Start by visually inspecting the data to get an idea of relationships that might be present (**hint:** look into the `ggpairs` function in the `GGally` package.). Describe what you see.
+
+```{r}
+## from the hint
+library(GGally)
+data("Boston")
+## make plots and describe
+
+
+p<-ggpairs(Boston)+theme_bw()
+p
+
+
+
+
+
+```
+
+\textcolor{red}{There appears to be some predictors that have a strong correlation amongst themselves such as rad and tax, and, nox and indus.}
+
+
+```{r}
+
+ggarrange(
+p[14,1],
+p[14,2],
+p[14,3],
+p[14,4],labels=1:4)
+```
+
+
+\textcolor{red}{In thefirst graph for median value and criminality there seems to be a negative relationship between the variables. In the second graph of zone and median value, there is no apparent relationship between the two variables. for indus and medv, it does not appear to have a relationship and Chas is a indicator variable and there seems to be no relationship between chas and medv.}
+
+
+
+
+
+
+
+
+```{r}
+ggarrange(p[14,5],p[14,6],p[14,7],p[14,8],labels = 1:4)
+```
+\textcolor{red}{In the first graph there appears to have a slight negative relationship between medv and nox, in the second graph there appears to be a positive linear relationship between rm and medv, in the third graph there appears to be negative relationship between age and medv. in the last graph there appears to be somewhat a positive relationship between dis and medv.}
+
+
+
+
+
+
+
+
+
+```{r}
+ggarrange(p[14,9],p[14,10],p[14,11],p[14,12],p[14,13],labels=c(1:5))
+```
+\textcolor{red}{In the first graph, Rad seems to be a categorical variable. In the second graph there is no clear relationship for tax and median value. In the third there appears to be a somewhat negative correlation between pupil ratio and median value. for black neighborhoods there seems to be quite spread out.In the last graph lower status and med value, seem to have a strong negative relationship.}
+
+
+
+
+
+
+
+
+
+
+
+
+Next fit linear models using the `lm()` function:
+
+(a) For each predictor fit a simple linear regression model to predict the response. Describe your results. In which of the models is there a statistically significant association between the predictor and the response?
+
+```{r}
+coefs<-NA
+
+slr <- function(x){
+  lm<-lm(data=Boston,medv~x)
+  summary(lm)
+ 
+  
+}
+
+
+
+for (i in 1:13){
+  print(colnames(Boston[i]))
+  print(slr(Boston[,i]))
+  lm<-lm(data=Boston,medv~Boston[,i])
+  coefs<-c(coefs,coef(lm)[2])
+      
+}
+
+coefs <- coefs[-1]
+
+```
+\textcolor{red}{All models are statistically significant.}
+
+(b) Fit a multiple regression model to predict the response using all of the predictors. Describe your results (including diagnostic plots). For which predictors can we reject the null hypothesis $H_0: \beta_j = 0$?
+
+```{r}
+
+lmfull <- lm(data=Boston, medv~crim+zn+indus+chas+nox+rm+age+dis+rad+tax+ptratio+black+lstat)
+
+summary(lmfull)
+  
+```
+\textcolor{red}{We can reject the null for indus and age.}
+
+(c) How do your results from (a) compare to your results from (b)? Create a plot displaying the univariate regression coefficients from (a) on the $x$-axis and the multiple regression coefficients from (b) on the $y$-axis. That is, each predictor is displayed as a single point on the plot. Its coefficient in a simple linear regression model is shown as its $x$ coordinate and its coefficient in a multiple linear regression model is shown as its $y$ coordinate. Describe what you see.
+
+\textcolor{red}{The model from A found that all of the predictors were statistically significant however, the model from B for found that 2 of them were not actually statisically significant (indus and age)}
+
+```{r}
+
+mlr<-coef(lmfull)[2:14]
+
+df<- data.frame(coefs,mlr)
+ggplot(data=df,aes(x=coefs,y=mlr))+geom_point(alpha=0.6)+theme_minimal()+xlab("SLR")+ylab("MLR")
+
+```
+
+\textcolor{red}{We can see that the there is quite a difference between the coefficient predicted for the slr models and the mlr model for most of the points}
+
+ 
+
