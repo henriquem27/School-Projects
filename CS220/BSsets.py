@@ -124,3 +124,5 @@ if __name__ == "__main__":
   print( 's3 == s2|s1:', s3 == s2|s1 )
   print( 'len(s3) == len(s2)+len(s1)-len(s2&s1):',
           len(s3) == len(s2)+len(s1)-len(s2&s1) )
+
+print(len(s3))
